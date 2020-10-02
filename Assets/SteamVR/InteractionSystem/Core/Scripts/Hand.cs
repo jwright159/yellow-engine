@@ -598,7 +598,7 @@ namespace Valve.VR.InteractionSystem
         //
         // objectToDetach - The GameObject to detach from this Hand
         //-------------------------------------------------
-        public void DetachObject(GameObject objectToDetach, bool restoreOriginalParent = true)
+        public void DetachObject(GameObject objectToDetach, bool restoreOriginalParent = true, bool isDestroying = false)
         {
             int index = attachedObjects.FindIndex(l => l.attachedObject == objectToDetach);
             if (index != -1)
@@ -635,7 +635,7 @@ namespace Valve.VR.InteractionSystem
                         parentTransform = attachedObjects[index].originalParent.transform;
                     }
 
-                    if (attachedObjects[index].attachedObject != null)
+                    if (attachedObjects[index].attachedObject != null && !isDestroying)
                     {
                         attachedObjects[index].attachedObject.transform.parent = parentTransform;
                     }

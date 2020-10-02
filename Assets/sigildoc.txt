@@ -53,6 +53,8 @@ Examples:
 - - projectile launches when fire is unheld, like projectile
 - - so touch link p much just catches proj and sets it to displacement's thing
 - - !!! probably more fun if you have to throw it or hit it like a baseball or something idk
+- - wait so the touch link is cast as charging, automatically fires when collided with
+- - this firing doesn't launch the projectile bc its not displacement, but emissive starts displacement charging
 
 ------------------------
 
