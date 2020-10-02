@@ -1,0 +1,63 @@
+Targets:
+- Touching
+- Projecting
+- Beaming
+- Scanning (hitscan)
+- Channelling
+- Casting (self)
+- Caching [time]
+
+Target Mods:
+- Loop
+- Trace ( =) -> ^ ^ ^ - _ _ _ X( ) {spell}
+- Chain (lighting)
+- Spread (shotgun)
+- Regional (aoe) [area]
+- Reflective (doesn't recast spell)
+- Emissive (recasts same spell or different) [deadzone (reflection point)]
+
+Directions (also vector math):
+- Surface normal
+- Gravitational normal
+- Spell normal
+
+Elements: actually don't do this, just use mana
+ok so reimplent them later but for puzzles and have each nation represent a different element so there's a progression
+- Vis (stupidly inefficient)
+- Ignis
+- Potentia
+- Spatium (local dimensions increase with power, can't use time bc need to look along time axis)
+- Massa
+- Anima (soul)
+
+Spells:
+- Exchange
+- Link
+- Displacment
+
+Spell Attributes:
+- Charge rate (at cost of efficiency)
+- Release rate (the difference between a burn and an explosion)
+- Speed (of target method)
+- Amount (again of target method)
+
+------------------------
+
+Examples:
+- Projecting Vis-Ignis Exchange (fireball)
+- Touching Vis-Anima Projecting Vis Displacement Emissive Link (Jay's main, projectile redirection)
+
+------------------------
+
+Target provides form, element provides material/effects
+2 forms, at target and on way to target
+Everything is Unity's particle system
+
+------------------------
+
+
+TODO:
+	non-vel movement is jittery
+	vel movement doesn't snap with ease in
+	vel movement just doesn't work in general
+	disabling the transformy stuff still makes it move bc its parented to the hand

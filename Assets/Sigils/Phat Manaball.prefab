@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3559070618289715765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3103811358682785337}
+  - component: {fileID: 9202326074930284190}
+  - component: {fileID: 2285959441240656928}
+  - component: {fileID: 4948523530019225043}
+  m_Layer: 0
+  m_Name: Phat Manaball
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3103811358682785337
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3559070618289715765}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9202326074930284190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3559070618289715765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2055d72fd078bb9458ce8c291cacb5c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overrideOwnerColor: 0
+  prefab: {fileID: 2632188251865065451, guid: e2117ea3e68ddf340b8a1950d76d5a74, type: 3}
+  fireFactor: 20
+  forceFactor: 0
+--- !u!114 &2285959441240656928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3559070618289715765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a514472d5bc46643a8f152a7da94d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargeRate: 200
+  releaseRate: 200
+  mods: []
+  target: {fileID: 9202326074930284190}
+  producedElement: {fileID: 11400000, guid: 3f80a284dfa175d42bb591b7fa2de774, type: 2}
+  consumedElement: {fileID: 11400000, guid: 3f80a284dfa175d42bb591b7fa2de774, type: 2}
+--- !u!114 &4948523530019225043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3559070618289715765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7855e281e9b79946a996646a44f7bae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell: {fileID: 2285959441240656928}
