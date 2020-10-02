@@ -23,7 +23,7 @@ namespace WrightWay.YellowVR.Targets
 		{
 			float weight = 1f / (instance.mana / instance.spell.minimumManaCost);
 			instance.transferer.rigidbody.AddForce(instance.transform.rotation * Vector3.forward * 2000f * Mathf.Pow(weight, 2) * fireFactor);
-			Debug.Log($"mana: {instance.mana}, minMana: {instance.spell.minimumManaCost}, unweight: {instance.mana / instance.spell.minimumManaCost}, weight: {weight}, square: {weight * weight}");
+			//Debug.Log($"mana: {instance.mana}, minMana: {instance.spell.minimumManaCost}, unweight: {instance.mana / instance.spell.minimumManaCost}, weight: {weight}, square: {weight * weight}");
 		}
 
 		public override void UpdateInstance(SpellInstance instance)

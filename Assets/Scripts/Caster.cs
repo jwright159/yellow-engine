@@ -62,14 +62,12 @@ public class Caster : MonoBehaviour
 	{
 		spellInstance = sigil.CreateInstance(this);
 		spellInstance.transform.parent = transform;
-		spellInstance.owner = owner;
-		spellInstance.transferer.rigidbody.detectCollisions = false;
+		spellInstance.owner = this;
 	}
 
 	public void Fire()
 	{
 		spellInstance.Fire();
-		spellInstance.transferer.rigidbody.detectCollisions = true;
 		spellInstance = null;
 	}
 

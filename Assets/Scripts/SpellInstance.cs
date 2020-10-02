@@ -16,12 +16,12 @@ public class SpellInstance : MonoBehaviour
 	[NonSerialized]
 	public EnergyTransferer transferer;
 
-	private Character _owner;
-	public Character owner {
+	private Caster _owner;
+	public Caster owner {
 		get => _owner;
 		set {
 			_owner = value;
-			spell.target.SetSpellColor(this, _owner.color);
+			spell.target.SetSpellColor(this, _owner.owner.color);
 		}
 	}
 
@@ -41,7 +41,7 @@ public class SpellInstance : MonoBehaviour
 		transform.localPosition = Vector3.zero;
 		transform.localRotation = Quaternion.identity;
 		transform.localScale = Vector3.zero;
-		spell.target.SetSpellColor(this, owner.color);
+		spell.target.SetSpellColor(this, owner.owner.color);
 	}
 
 	private void Update()
@@ -81,6 +81,11 @@ public class SpellInstance : MonoBehaviour
 	public void OnCollisionEnter(Collision collision)
 	{
 		Debug.Log($"Colliding with {collision.collider}");
+		if (state == SpellState.Charging)
+		{
+			Debug.Log("Firing from collision");
+			owner.Fire();
+		}
 		spell.Collide(this, collision);
 	}
 
@@ -89,6 +94,7 @@ public class SpellInstance : MonoBehaviour
 		this.mana += mana;
 	}
 
+	// Only call this from Caster.Fire(). Perhaps just move this there?
 	public void Fire()
 	{
 		if (mana < spell.minimumManaCost)
