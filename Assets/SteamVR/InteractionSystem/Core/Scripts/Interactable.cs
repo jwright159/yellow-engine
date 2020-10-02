@@ -311,13 +311,17 @@ namespace Valve.VR.InteractionSystem
                 if (isHovering == false && highlightHolder != null)
                     Destroy(highlightHolder);
             }
+        }
 
-			if (updateTarget)
-			{
+        //TODO: why doesn't this work?????
+        private void LateUpdate()
+		{
+            if (updateTarget)
+            {
                 transform.position = targetPosition;
                 transform.rotation = targetRotation;
                 updateTarget = false;
-			}
+            }
         }
 
 

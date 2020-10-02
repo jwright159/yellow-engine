@@ -45,7 +45,14 @@ Spell Attributes:
 
 Examples:
 - Projecting Vis-Ignis Exchange (fireball)
+- - it charges when you hold fire and shoots when you release. simple.
 - Touching Vis-Anima Projecting Vis Displacement Emissive Link (Jay's main, projectile redirection)
+- - ok so what happens is a hostile projectile is shot towards caster
+- - caster fires touch link, which turns it friendly
+- - projectile is held while fire is held, like when a projectile charges, except it doesn't charge
+- - projectile launches when fire is unheld, like projectile
+- - so touch link p much just catches proj and sets it to displacement's thing
+- - !!! probably more fun if you have to throw it or hit it like a baseball or something idk
 
 ------------------------
 
