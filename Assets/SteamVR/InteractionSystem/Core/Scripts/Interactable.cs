@@ -41,34 +41,6 @@ namespace Valve.VR.InteractionSystem
 
         [Tooltip("Specify whether you want to snap to the hand's object attachment point, or just the raw hand")]
         public bool useHandObjectAttachmentPoint = true;
-        private Vector3 _targetPosition;
-        public Vector3 targetPosition
-		{
-            get => _targetPosition;
-            set {
-                _targetPosition = value;
-                if (!updateTarget)
-				{
-                    updateTarget = true;
-                    targetRotation = transform.rotation;
-				}
-			}
-		}
-        private Quaternion _targetRotation;
-        public Quaternion targetRotation
-        {
-            get => _targetRotation;
-            set
-            {
-                _targetRotation = value;
-                if (!updateTarget)
-                {
-                    updateTarget = true;
-                    targetPosition = transform.position;
-                }
-            }
-        }
-        private bool updateTarget;
 
         public bool attachEaseIn = false;
         [HideInInspector]
@@ -128,7 +100,12 @@ namespace Valve.VR.InteractionSystem
 
         protected virtual void Start()
         {
-            highlightMat = (Material)Resources.Load("SteamVR_HoverHighlight", typeof(Material));
+            if (highlightMat == null)
+#if UNITY_URP
+                highlightMat = (Material)Resources.Load("SteamVR_HoverHighlight_URP", typeof(Material));
+#else
+                highlightMat = (Material)Resources.Load("SteamVR_HoverHighlight", typeof(Material));
+#endif
 
             if (highlightMat == null)
                 Debug.LogError("<b>[SteamVR Interaction]</b> Hover Highlight Material is missing. Please create a material named 'SteamVR_HoverHighlight' and place it in a Resources folder", this);
@@ -310,17 +287,6 @@ namespace Valve.VR.InteractionSystem
 
                 if (isHovering == false && highlightHolder != null)
                     Destroy(highlightHolder);
-            }
-        }
-
-        //TODO: why doesn't this work?????
-        private void LateUpdate()
-		{
-            if (updateTarget)
-            {
-                transform.position = targetPosition;
-                transform.rotation = targetRotation;
-                updateTarget = false;
             }
         }
 

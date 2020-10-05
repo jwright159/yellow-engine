@@ -1207,8 +1207,8 @@ namespace Valve.VR.InteractionSystem
                     {
                         if (attachedInfo.HasAttachFlag(AttachmentFlags.ParentToHand))
                         {
-                            attachedInfo.interactable.targetPosition = TargetItemPosition(attachedInfo);
-                            attachedInfo.interactable.targetRotation = TargetItemRotation(attachedInfo);
+                            attachedInfo.interactable.transform.position = TargetItemPosition(attachedInfo);
+                            attachedInfo.interactable.transform.rotation = TargetItemRotation(attachedInfo);
                         }
                     }
 
