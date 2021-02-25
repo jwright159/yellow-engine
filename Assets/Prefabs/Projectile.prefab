@@ -99,4 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e750ac8d5e3a3cd4085184cff2da898c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeout: 30
+  particleParents:
+  - {fileID: 3758228827800330236}
+  timeout: 10

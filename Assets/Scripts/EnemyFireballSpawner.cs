@@ -2,35 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Caster))]
-public class EnemyFireballSpawner : MonoBehaviour
+namespace WrightWay.YellowVR
 {
-	public float maxTime;
-	private float time;
-
-	private Caster caster;
-
-	private void Awake()
+	[RequireComponent(typeof(Caster))]
+	public class EnemyFireballSpawner : MonoBehaviour
 	{
-		caster = GetComponent<Caster>();
-	}
+		public float maxTime;
+		private float time;
 
-	private void Start()
-	{
-		caster.StartCharging();
-	}
+		private Caster caster;
 
-	private void Update()
-	{
-		time += Time.deltaTime;
-		if (time > maxTime)
+		private void Awake()
 		{
-			time = 0;
-			caster.Fire();
+			caster = GetComponent<Caster>();
 		}
-		else if (time > 1 && !caster.isCharging)
+
+		private void Start()
 		{
 			caster.StartCharging();
+		}
+
+		private void Update()
+		{
+			time += Time.deltaTime;
+			if (time > maxTime)
+			{
+				time = 0;
+				caster.Fire();
+			}
+			else if (time > 1 && !caster.isCharging)
+			{
+				caster.StartCharging();
+			}
 		}
 	}
 }

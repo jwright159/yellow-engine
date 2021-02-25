@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2285959441240656928}
   - component: {fileID: 4948523530019225043}
   m_Layer: 0
-  m_Name: Fireball
+  m_Name: Manaball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,6 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overrideOwnerColor: 0
   prefab: {fileID: 2632188251865065451, guid: e2117ea3e68ddf340b8a1950d76d5a74, type: 3}
+  destructionPrefab: {fileID: 3764288974784510305, guid: 8acc42c3693f76f448401989e828ff25,
+    type: 3}
+  fireFactor: 1
+  forceFactor: 1
 --- !u!114 &2285959441240656928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,8 +66,9 @@ MonoBehaviour:
   chargeRate: 10
   releaseRate: 200
   mods: []
+  retriggers: []
   target: {fileID: 9202326074930284190}
-  producedElement: {fileID: 11400000, guid: 3f80a284dfa175d42bb591b7fa2de774, type: 2}
+  primaryElement: {fileID: 11400000, guid: 3f80a284dfa175d42bb591b7fa2de774, type: 2}
   consumedElement: {fileID: 11400000, guid: 3f80a284dfa175d42bb591b7fa2de774, type: 2}
 --- !u!114 &4948523530019225043
 MonoBehaviour:

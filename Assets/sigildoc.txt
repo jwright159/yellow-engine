@@ -7,7 +7,7 @@ Targets:
 - Casting (self)
 - Caching [time]
 
-Target Mods:
+Spell Mods:
 - Loop
 - Trace ( =) -> ^ ^ ^ - _ _ _ X( ) {spell}
 - Chain (lighting)
@@ -32,7 +32,7 @@ ok so reimplent them later but for puzzles and have each nation represent a diff
 
 Spells:
 - Exchange
-- Link
+- Link / Capture
 - Displacment
 
 Spell Attributes:
@@ -41,12 +41,15 @@ Spell Attributes:
 - Speed (of target method)
 - Amount (again of target method)
 
+Retriggers: things that cast spells when a thing happens, NOT MODS!
+- Spell on spell collision
+
 ------------------------
 
 Examples:
 - Projecting Vis-Ignis Exchange (fireball)
 - - it charges when you hold fire and shoots when you release. simple.
-- Touching Vis-Anima Projecting Vis Displacement Emissive Link (Jay's main, projectile redirection)
+- Touching Vis-Anima Projecting Capture Link (Jay's main, projectile redirection)
 - - ok so what happens is a hostile projectile is shot towards caster
 - - caster fires touch link, which turns it friendly
 - - projectile is held while fire is held, like when a projectile charges, except it doesn't charge
@@ -65,7 +68,7 @@ Everything is Unity's particle system
 ------------------------
 
 
-TODO:
+notes on the gun:
 	non-vel movement is jittery
 	vel movement doesn't snap with ease in
 	vel movement just doesn't work in general

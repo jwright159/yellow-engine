@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overrideOwnerColor: 0
   prefab: {fileID: 2632188251865065451, guid: e2117ea3e68ddf340b8a1950d76d5a74, type: 3}
+  destructionPrefab: {fileID: 3764288974784510305, guid: 8acc42c3693f76f448401989e828ff25,
+    type: 3}
   fireFactor: 200
   forceFactor: 0
 --- !u!114 &2285959441240656928
@@ -64,8 +66,9 @@ MonoBehaviour:
   chargeRate: 200
   releaseRate: 200
   mods: []
+  retriggers: []
   target: {fileID: 9202326074930284190}
-  producedElement: {fileID: 11400000, guid: 3f80a284dfa175d42bb591b7fa2de774, type: 2}
+  primaryElement: {fileID: 11400000, guid: 3f80a284dfa175d42bb591b7fa2de774, type: 2}
   consumedElement: {fileID: 11400000, guid: 3f80a284dfa175d42bb591b7fa2de774, type: 2}
 --- !u!114 &4948523530019225043
 MonoBehaviour:

@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WrightWay.YellowVR.Spells;
 
-public class Sigil : MonoBehaviour
+namespace WrightWay.YellowVR
 {
-    public Spell spell;
-
-    public SpellInstance CreateInstance(Caster caster)
+	public class Sigil : MonoBehaviour
 	{
-		SpellInstance instance = spell.CreateInstance(caster);
-		instance.spell = spell;
-		return instance;
+		[SerializeField]
+		private Spell spell;
+
+		public SpellInstance CreateInstance(Caster caster)
+		{
+			SpellInstance instance = spell.CreateInstance(caster);
+			instance.spell = spell;
+			return instance;
+		}
+
+		public override string ToString() => $"{spell}\nCost: {spell.chargeRate} mps, min {spell.minimumManaCost} mana";
 	}
 }

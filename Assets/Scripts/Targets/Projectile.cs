@@ -4,20 +4,10 @@ namespace WrightWay.YellowVR.Targets
 {
 	public class Projectile : Target
 	{
-		public SpellInstance prefab;
-
 		public float fireFactor = 1f;
 		public float forceFactor = 1f;
 
 		public override float minimumManaCost => 10;
-
-		public override SpellInstance CreateInstance(Element element, Caster caster)
-		{
-			SpellInstance instance = Instantiate(prefab);
-			GameObject particles = Instantiate(element.particleSystem.gameObject);
-			particles.transform.parent = instance.transform;
-			return instance;
-		}
 
 		public override void Fire(SpellInstance instance)
 		{
@@ -52,15 +42,6 @@ namespace WrightWay.YellowVR.Targets
 				sum = x * x + y * y;
 			} while (sum >= 1);
 			return x * Mathf.Sqrt(-2 * Mathf.Log(sum) / sum);
-		}
-
-		public override void SetSpellColor(SpellInstance instance, Color color)
-		{
-			if (overrideOwnerColor) return;
-			foreach (ParticleMultiplier multiplier in instance.GetComponentsInChildren<ParticleMultiplier>())
-			{
-				multiplier.SetColor(color);
-			}
 		}
 
 		public override string ToString() => "Projecting";

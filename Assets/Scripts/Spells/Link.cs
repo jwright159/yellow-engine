@@ -1,33 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WrightWay.YellowVR.SpellEvents;
 
 namespace WrightWay.YellowVR.Spells
 {
 	public class Link : Spell
 	{
-		public Element affectedElement;
 		public Element linkingElement;
 
-		public override void Collide(SpellInstance instance, Collision collision)
+		public override void CollideWithSpell(object sender, CollideWithSpellEventArgs args)
 		{
-			SpellInstance collideInstance = collision.gameObject.GetComponent<SpellInstance>();
-			
-			if (affectedElement == instance.transferer.manaInterface.element && collideInstance)
+			// Only for mana-based spells
+			if (primaryElement == args.senderInstance.transferer.manaInterface.element)
 			{
 				Debug.Log("Linking spell");
-				if (linkingElement == instance.transferer.soulInterface.element)
+				if (linkingElement == args.senderInstance.transferer.soulInterface.element)
 				{
-					collideInstance.owner = instance.owner;
+					// This just links spells to caster. See Capture.cs for connecting to caster.
+					args.collisionInstance.caster = args.senderInstance.caster;
 				}
 			}
 		}
 
-		public override SpellInstance CreateInstance(Caster caster)
-		{
-			return target.CreateInstance(linkingElement, caster);
-		}
-
-		public override string ToString() => GetDisplayName("Link", affectedElement, linkingElement);
+		public override string ToString() => GetDisplayName("Link", primaryElement, linkingElement);
 	}
 }

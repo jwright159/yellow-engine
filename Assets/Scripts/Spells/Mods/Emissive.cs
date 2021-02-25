@@ -8,6 +8,11 @@ namespace WrightWay.YellowVR.Spells.SpellMods
 	{
 		public Spell casted;
 
+		public override void LinkInstance(SpellInstance instance)
+		{
+			throw new System.NotImplementedException();
+		}
+
 		public override string ToString() => $"{casted} Emissive";
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WrightWay.YellowVR.SpellEvents;
 
 namespace WrightWay.YellowVR.Spells
 {
@@ -8,16 +9,11 @@ namespace WrightWay.YellowVR.Spells
 	{
 		public Element displacedElement;
 
-		public override void Collide(SpellInstance instance, Collision collision)
+		public override void CollideWithSpell(object sender, CollideWithSpellEventArgs args)
 		{
 			
 		}
 
-		public override SpellInstance CreateInstance(Caster caster)
-		{
-			return target.CreateInstance(displacedElement, caster);
-		}
-
-		public override string ToString() => GetDisplayName("Displacement", displacedElement);
+		public override string ToString() => GetDisplayName("Displacement", primaryElement);
 	}
 }

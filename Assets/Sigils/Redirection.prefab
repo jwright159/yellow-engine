@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2139314482343709165}
-  - component: {fileID: 6491209151287452657}
-  - component: {fileID: -4197523568218839948}
-  - component: {fileID: 2139314482343709166}
+  - component: {fileID: -3203029776494381761}
+  - component: {fileID: -3215668450105936575}
+  - component: {fileID: 4700282389372894784}
   - component: {fileID: -8551233751035351865}
   - component: {fileID: 3518158481924468406}
   m_Layer: 0
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6491209151287452657
+--- !u!114 &-3203029776494381761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,15 +44,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2139314482343709167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37312386a48bcab488ada1518dbc38f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 79ddd045c9b23844da719f82af0fd438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeRate: 5
-  releaseRate: 100
+  chargeRate: 0
+  releaseRate: 0
   mods: []
+  retriggers: []
   target: {fileID: 0}
-  displacedElement: {fileID: 11400000, guid: 3f80a284dfa175d42bb591b7fa2de774, type: 2}
---- !u!114 &-4197523568218839948
+  primaryElement: {fileID: 11400000, guid: 3f80a284dfa175d42bb591b7fa2de774, type: 2}
+--- !u!114 &-3215668450105936575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,11 +62,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2139314482343709167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3d99b4895657c841b5f4b98f1680b20, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a1fb78bb6038a34086f5ea97d900716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  casted: {fileID: 6491209151287452657}
---- !u!114 &2139314482343709166
+  trigger: 0
+  spell: {fileID: -3203029776494381761}
+--- !u!114 &4700282389372894784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,10 +76,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2139314482343709167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2055d72fd078bb9458ce8c291cacb5c0, type: 3}
+  m_Script: {fileID: 11500000, guid: bf09dc2123ac02a4885e7f5cec0664a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2632188251865065451, guid: e2117ea3e68ddf340b8a1950d76d5a74, type: 3}
+  overrideOwnerColor: 0
+  prefab: {fileID: 6329638895931392084, guid: 86c2040e4c750f843952b3a2081f83f4, type: 3}
+  destructionPrefab: {fileID: 3764288974784510305, guid: 8010b1df0f600174ebeef3dbe1fb3b28,
+    type: 3}
 --- !u!114 &-8551233751035351865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,10 +97,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chargeRate: 10
   releaseRate: 200
-  mods:
-  - {fileID: -4197523568218839948}
-  target: {fileID: 2139314482343709166}
-  affectedElement: {fileID: 11400000, guid: 3f80a284dfa175d42bb591b7fa2de774, type: 2}
+  mods: []
+  retriggers:
+  - {fileID: -3215668450105936575}
+  target: {fileID: 4700282389372894784}
+  primaryElement: {fileID: 11400000, guid: 3f80a284dfa175d42bb591b7fa2de774, type: 2}
   linkingElement: {fileID: 11400000, guid: 347aeaade088e1b4c95513b7bd67d15c, type: 2}
 --- !u!114 &3518158481924468406
 MonoBehaviour:
