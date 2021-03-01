@@ -4,22 +4,38 @@ using WrightWay.YellowVR.SpellEvents;
 
 namespace WrightWay.YellowVR
 {
+	/// <summary>
+	/// The physical manifestation of a <see cref="spell"/>.
+	/// </summary>
 	[RequireComponent(typeof(EnergyTransferer))]
 	public class SpellInstance : MonoBehaviour
 	{
-		public enum SpellState { Charging, Active, Dead }
-
+		/// <summary>
+		/// A list of <see cref="Transforms"/> to parent a <see cref="Element.particleSystem"/> to.
+		/// </summary>
 		public Transform[] particleParents;
 
+		/// <summary>
+		/// The time in seconds before the <see cref="SpellInstance"/> is forcefully destroyed.
+		/// </summary>
 		public float timeout = 2;
 
+		/// <summary>
+		/// The manifested <see cref="Spell"/>.
+		/// </summary>
 		[NonSerialized]
 		public Spell spell;
 
+		/// <summary>
+		/// Contains standard <see cref="EnergyTransferer.ElementalInterface"/>s.
+		/// </summary>
 		[NonSerialized]
 		public EnergyTransferer transferer;
 
 		private Caster _caster;
+		/// <summary>
+		/// The <see cref="Caster"/> that "owns" this <see cref="SpellInstance"/>.
+		/// </summary>
 		public Caster caster
 		{
 			get => _caster;
@@ -30,20 +46,42 @@ namespace WrightWay.YellowVR
 			}
 		}
 
+		/// <summary>
+		/// How long in seconds this <see cref="SpellInstance"/> has been alive.
+		/// </summary>
 		private float lifetime;
 
+		/// <summary>
+		/// If true, doesn't spawn the <see cref="Target.destructionPrefab"/>. True when the application is quit.
+		/// </summary>
 		private bool destroySilent;
 
+		/// <summary>
+		/// The amount of stored mana.
+		/// </summary>
 		public float mana { get; protected set; }
+		/// <summary>
+		/// The current state of the <see cref="SpellInstance"/>.
+		/// </summary>
 		public SpellState state { get; protected set; }
+		public enum SpellState { Charging, Active, Dead }
 
+		/// <summary>
+		/// An event that is raised when this <see cref="SpellInstance"/> collides with another <see cref="SpellInstance"/>.
+		/// </summary>
 		public event EventHandler<CollideWithSpellEventArgs> CollidedWithSpell;
 
+		/// <summary>
+		/// Assign some values.
+		/// </summary>
 		private void Awake()
 		{
 			transferer = GetComponent<EnergyTransferer>();
 		}
 
+		/// <summary>
+		/// Reset some values.
+		/// </summary>
 		private void Start()
 		{
 			state = SpellState.Charging;
@@ -55,6 +93,10 @@ namespace WrightWay.YellowVR
 			CollidedWithSpell += spell.CollideWithSpell;
 		}
 
+
+		/// <summary>
+		/// It's Update. Imagine that.
+		/// </summary>
 		private void Update()
 		{
 			if (lifetime >= timeout)
@@ -81,6 +123,9 @@ namespace WrightWay.YellowVR
 			}
 		}
 
+		/// <summary>
+		/// It's FixedUpdate. Guess what that's for.
+		/// </summary>
 		private void FixedUpdate()
 		{
 			if (state == SpellState.Active)
@@ -89,6 +134,10 @@ namespace WrightWay.YellowVR
 			}
 		}
 
+		/// <summary>
+		/// Can I stop writing documentation now?
+		/// </summary>
+		/// <param name="collision">The collision we just entered.</param>
 		private void OnCollisionEnter(Collision collision)
 		{
 			Debug.Log($"Colliding with {collision.collider}");
@@ -105,23 +154,35 @@ namespace WrightWay.YellowVR
 			}
 		}
 
+		/// <summary>
+		/// Disables <see cref="Target.destructionPrefab"/> so things don't get instantiated on quit.
+		/// </summary>
 		private void OnApplicationQuit()
 		{
 			destroySilent = true;
 		}
 
+		/// <summary>
+		/// Spawns (or doesn't) <see cref="Target.destructionPrefab"/>.
+		/// </summary>
 		private void OnDestroy()
 		{
 			if (!destroySilent)
 				spell.DestroyInstance(this);
 		}
 
+		/// <summary>
+		/// Adds <paramref name="mana"/> to <see cref="mana"/>.
+		/// </summary>
+		/// <param name="mana">How much mana to add.</param>
 		public void Charge(float mana)
 		{
 			this.mana += mana;
 		}
 
-		// Only call this from Caster.Fire(). Perhaps just move this there?
+		/// <summary>
+		/// Either fail the spell or cast it from the <see cref="caster"/>.
+		/// </summary>
 		public void Fire()
 		{
 			if (mana < spell.minimumManaCost)
@@ -136,6 +197,10 @@ namespace WrightWay.YellowVR
 			}
 		}
 
+		/// <summary>
+		/// Parents new <paramref name="particleSystem"/>s to the <see cref="particleParents"/>.
+		/// </summary>
+		/// <param name="particleSystem">The <see cref="ParticleSystem"/> to add.</param>
 		public void AddParticleSystem(ParticleSystem particleSystem)
 		{
 			foreach (Transform parent in particleParents)
@@ -144,6 +209,10 @@ namespace WrightWay.YellowVR
 			}
 		}
 
+		/// <summary>
+		/// Colors the <see cref="ParticleSystem"/>s the <see cref="caster"/>'s <see cref="Caster.owner"/>'s <see cref="Character.color"/>.
+		/// </summary>
+		/// <param name="parent">The root of the <see cref="ParticleSystem"/>s.</param>
 		public void SetParticleColor(GameObject parent)
 		{
 			spell.SetParticleColor(parent, caster.owner.color);

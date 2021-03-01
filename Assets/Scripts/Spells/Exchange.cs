@@ -5,6 +5,21 @@ using WrightWay.YellowVR.Targets;
 
 namespace WrightWay.YellowVR.Spells
 {
+	/// <summary>
+	/// A <see cref="Spell"/> that does a pure energy exchange.
+	/// <para>
+	/// <example>Some examples:
+	/// <list type="bullet">
+	/// <item>
+	///		<description>A mana exchange deposits stored mana into an entity.</description>
+	/// </item>
+	/// <item>
+	///		<description>A fire exchange heats up an entity.</description>
+	/// </item>
+	/// </list>
+	/// </example>
+	/// </para>
+	/// </summary>
 	public class Exchange : Spell
 	{
 		public Element consumedElement;

@@ -2,9 +2,19 @@
 
 namespace WrightWay.YellowVR.Targets
 {
+	/// <summary>
+	/// A <see cref="Target"/> that fires a projectile that has an effect on impact.
+	/// </summary>
 	public class Projectile : Target
 	{
+		/// <summary>
+		/// Multiplier for how fast it launches.
+		/// </summary>
 		public float fireFactor = 1f;
+
+		/// <summary>
+		/// Multiplier for how fast it accelerates after being fired.
+		/// </summary>
 		public float forceFactor = 1f;
 
 		public override float minimumManaCost => 10;

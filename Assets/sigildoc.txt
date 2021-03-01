@@ -14,7 +14,7 @@ Spell Mods:
 - Spread (shotgun)
 - Regional (aoe) [area]
 - Reflective (doesn't recast spell)
-- Emissive (recasts same spell or different) [deadzone (reflection point)]
+- Emissive (recasts NEW INSTANCES of spells) [deadzone (reflection point)]
 
 Directions (also vector math):
 - Surface normal
@@ -41,7 +41,7 @@ Spell Attributes:
 - Speed (of target method)
 - Amount (again of target method)
 
-Retriggers: things that cast spells when a thing happens, NOT MODS!
+Retriggers: things that cast (not fire) spells when a thing happens, NOT MODS!
 - Spell on spell collision
 
 ------------------------

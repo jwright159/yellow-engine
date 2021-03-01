@@ -4,16 +4,22 @@ using UnityEngine;
 
 namespace WrightWay.YellowVR.Spells.SpellMods
 {
+	/// <summary>
+	/// Fires additional copies of a <see cref="spell"/>.
+	/// </summary>
 	public class Emissive : SpellMod
 	{
-		public Spell casted;
+		/// <summary>
+		/// The <see cref="Spell"/> to be casted.
+		/// </summary>
+		public Spell spell;
 
 		public override void LinkInstance(SpellInstance instance)
 		{
 			throw new System.NotImplementedException();
 		}
 
-		public override string ToString() => $"{casted} Emissive";
+		public override string ToString() => $"{spell} Emissive";
 	}
 }
 

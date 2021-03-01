@@ -2,6 +2,9 @@
 
 namespace WrightWay.YellowVR
 {
+	/// <summary>
+	/// Destroys a <see cref="GameObject"/> after a <see cref="ParticleSystem"/> dies.
+	/// </summary>
 	[RequireComponent(typeof(ParticleSystem))]
 	public class ParticleDestroyer : MonoBehaviour
 	{

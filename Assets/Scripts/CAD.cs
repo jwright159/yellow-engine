@@ -6,6 +6,9 @@ using WrightWay.YellowVR.Spells;
 
 namespace WrightWay.YellowVR
 {
+	/// <summary>
+	/// Basic implementation of <see cref="Caster"/>.
+	/// </summary>
 	[RequireComponent(typeof(Caster))]
 	public class CAD : InteractableImplementation
 	{

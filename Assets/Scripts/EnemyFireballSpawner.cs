@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace WrightWay.YellowVR
 {
+	/// <summary>
+	/// Basic implementation of <see cref="Caster"/>, but evil and not usable by the player.
+	/// </summary>
 	[RequireComponent(typeof(Caster))]
 	public class EnemyFireballSpawner : MonoBehaviour
 	{

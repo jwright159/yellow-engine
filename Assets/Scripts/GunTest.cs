@@ -6,6 +6,9 @@ using WrightWay.YellowVR.Spells;
 
 namespace WrightWay.YellowVR
 {
+	/// <summary>
+	/// Basic implementation of <see cref="Caster"/>, but only usable by a button.
+	/// </summary>
 	[RequireComponent(typeof(Caster))]
 	public class GunTest : InteractableImplementation
 	{

@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Nonrotator : MonoBehaviour
+namespace WrightWay.YellowVR
 {
-    private Vector3 angles;
-
-	private void Start()
+	/// <summary>
+	/// A constraint that just prevents a <see cref="Transform"/> from rotating after starting.
+	/// </summary>
+	public class Nonrotator : MonoBehaviour
 	{
-		angles = transform.localEulerAngles;
-	}
+		private Vector3 angles;
 
-	private void Update()
-	{
-		transform.eulerAngles = angles;
+		private void Start()
+		{
+			angles = transform.localEulerAngles;
+		}
+
+		private void Update()
+		{
+			transform.eulerAngles = angles;
+		}
 	}
 }

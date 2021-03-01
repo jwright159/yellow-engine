@@ -2,23 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Camera))]
-public class PortalCamera : MonoBehaviour
+namespace WrightWay.YellowVR
 {
-	public Portal[] portals;
-
-	private new Camera camera;
-
-	private void Awake()
+	/// <summary>
+	/// A <see cref="Camera"/> that wants <see cref="Portal"/>s rendered, usually the main camera.
+	/// </summary>
+	[RequireComponent(typeof(Camera))]
+	public class PortalCamera : MonoBehaviour
 	{
-		camera = GetComponent<Camera>();
-	}
+		public Portal[] portals;
 
-	private void OnPreCull()
-	{
-		foreach(Portal portal in portals)
+		private new Camera camera;
+
+		private void Awake()
 		{
-			portal.Render(camera);
+			camera = GetComponent<Camera>();
+		}
+
+		private void OnPreCull()
+		{
+			foreach (Portal portal in portals)
+			{
+				portal.Render(camera);
+			}
 		}
 	}
 }

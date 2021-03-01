@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace WrightWay.YellowVR.Targets
 {
+	/// <summary>
+	/// A <see cref="Target"/> that has effects only while charging.
+	/// </summary>
 	public class Touch : Target
 	{
 		public override float minimumManaCost => 10;

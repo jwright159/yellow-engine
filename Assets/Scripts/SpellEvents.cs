@@ -7,6 +7,9 @@ namespace WrightWay.YellowVR.SpellEvents
 		CollideWithSpell
 	}
 
+	/// <summary>
+	/// <see cref="EventArgs"/> for <see cref="SpellInstance.CollidedWithSpell"/>.
+	/// </summary>
 	public class CollideWithSpellEventArgs : EventArgs
 	{
 		public CollideWithSpellEventArgs(SpellInstance senderInstance, SpellInstance collisionInstance)
