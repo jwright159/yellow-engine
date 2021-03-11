@@ -542,7 +542,6 @@ GameObject:
   - component: {fileID: 227308274776972784}
   - component: {fileID: 4440110916529577632}
   - component: {fileID: -8689314533069424801}
-  - component: {fileID: 9142094425000712995}
   - component: {fileID: -8024412014802253363}
   - component: {fileID: -6927587537727637624}
   m_Layer: 0
@@ -646,19 +645,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5240357a2468cdc4291b266bee3cb9b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9142094425000712995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5000732411225539328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a0298e5645ac124a8076d860fd0c3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0, g: 0.47538614, b: 1, a: 1}
 --- !u!114 &-8024412014802253363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,12 +657,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739b6665c6253da41bd54389038ffa25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sigil: {fileID: 3518158481924468406, guid: c77843055249817439712f7e6e97d539, type: 3}
+  _sigil: {fileID: 3518158481924468406, guid: c77843055249817439712f7e6e97d539, type: 3}
+  manaInterface: {fileID: 11400000, guid: 830d204aec476d740ae0cb272ac74f33, type: 2}
+  timeEfficiency: 1
+  costEfficiency: 1
   textField: {fileID: 3403101810132081134}
   manaBar: {fileID: 8556380637809675250}
-  maxMana: 100
-  manaRate: 5
-  owner: {fileID: 9142094425000712995}
 --- !u!114 &-6927587537727637624
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,22 +24,23 @@ namespace WrightWay.YellowVR
 				if (textField) textField.text = _sigil.ToString();
 			}
 		}
+		[SerializeField]
 		private Sigil _sigil;
 
 		/// <summary>
-		/// The owner and user of this <see cref="Caster"/>.
+		/// The interface to draw mana from.
 		/// </summary>
-		public Character owner;
+		public ManaInterface manaInterface;
 
 		/// <summary>
 		/// Divisor for <see cref="Spell.chargeRate"/>. Controls how fast the <see cref="Caster"/> works.
 		/// </summary>
-		public float timeEfficiency;
+		public float timeEfficiency = 1;
 
 		/// <summary>
 		/// Divisor for <see cref="Spell"/> costs. Controls how much mana is lost.
 		/// </summary>
-		public float costEfficiency;
+		public float costEfficiency = 1;
 
 		/// <summary>
 		/// Describes the current <see cref="sigil"/>.
@@ -66,7 +67,7 @@ namespace WrightWay.YellowVR
 		/// </summary>
 		private void Start()
 		{
-			if (manaBar) manaBar.maxValue = owner.maxMana;
+			if (manaBar) manaBar.maxValue = manaInterface.maxMana;
 			if (textField) textField.text = sigil.ToString();
 		}
 
@@ -78,19 +79,19 @@ namespace WrightWay.YellowVR
 			if (isCharging)
 			{
 				float cost = spellInstance.spell.ChargeCost(Time.deltaTime / timeEfficiency) / costEfficiency;
-				if (cost > owner.mana)
+				if (cost > manaInterface.mana)
 				{
-					Debug.Log($"Firing from lack of mana, need {cost}, have {owner.mana}");
+					Debug.Log($"Firing from lack of mana, need {cost}, have {manaInterface.mana}");
 					Fire();
 				}
 				else
 				{
-					owner.mana -= cost;
+					manaInterface.mana -= cost;
 					spellInstance.Charge(cost);
 				}
 			}
 
-			if (manaBar) manaBar.value = owner.mana;
+			if (manaBar) manaBar.value = manaInterface.mana;
 		}
 
 		/// <summary>

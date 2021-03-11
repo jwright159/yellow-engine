@@ -233,12 +233,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739b6665c6253da41bd54389038ffa25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sigil: {fileID: 4948523530019225043, guid: e70fb9bcc8feb48489c5c5ab5255b734, type: 3}
+  _sigil: {fileID: 4948523530019225043, guid: 1ac09a40c519a6b47b7d78c775a2ec4d, type: 3}
+  manaInterface: {fileID: 11400000, guid: 830d204aec476d740ae0cb272ac74f33, type: 2}
+  timeEfficiency: 1
+  costEfficiency: 1
   textField: {fileID: 2124722520}
   manaBar: {fileID: 1289640220}
-  maxMana: 100
-  manaRate: 5
-  owner: {fileID: 0}
 --- !u!1 &342650261
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,12 +360,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739b6665c6253da41bd54389038ffa25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sigil: {fileID: 4948523530019225043, guid: 14c23ed100434a54a9a99549308242b3, type: 3}
+  _sigil: {fileID: 4948523530019225043, guid: e70fb9bcc8feb48489c5c5ab5255b734, type: 3}
+  manaInterface: {fileID: 11400000, guid: 4258c1155acdb9f489b5f0574dca3b27, type: 2}
+  timeEfficiency: 1
+  costEfficiency: 1
   textField: {fileID: 0}
   manaBar: {fileID: 0}
-  maxMana: 9999
-  manaRate: 9999
-  owner: {fileID: 342650268}
 --- !u!114 &342650268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0298e5645ac124a8076d860fd0c3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 0.34656855, b: 0, a: 1}
+  manaInterface: {fileID: 11400000, guid: 4258c1155acdb9f489b5f0574dca3b27, type: 2}
+  manaRegen: 1000
 --- !u!114 &389533502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -784,7 +785,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2e234ce731552409020070eb5b86ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachmentFlags: 12
 --- !u!114 &772980021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2494,6 +2494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1780177918}
   - component: {fileID: 1790147314}
+  - component: {fileID: 1780231047}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2501,6 +2502,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1780231047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780231046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0298e5645ac124a8076d860fd0c3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaInterface: {fileID: 11400000, guid: 830d204aec476d740ae0cb272ac74f33, type: 2}
+  manaRegen: 5
 --- !u!1 &1780231656
 GameObject:
   m_ObjectHideFlags: 0
@@ -3414,6 +3429,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CAD Preview
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339514249985823765, guid: 963b380a07144a24898be457c0631be3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1339514249985823766, guid: 963b380a07144a24898be457c0631be3,
         type: 3}

@@ -42,7 +42,7 @@ namespace WrightWay.YellowVR
 			set
 			{
 				_caster = value;
-				spell.SetParticleColor(gameObject, _caster.owner.color);
+				spell.SetParticleColor(gameObject, _caster.manaInterface.color);
 			}
 		}
 
@@ -88,7 +88,7 @@ namespace WrightWay.YellowVR
 			transform.localPosition = Vector3.zero;
 			transform.localRotation = Quaternion.identity;
 			transform.localScale = Vector3.zero;
-			spell.SetParticleColor(gameObject, caster.owner.color);
+			spell.SetParticleColor(gameObject, caster.manaInterface.color);
 
 			CollidedWithSpell += spell.CollideWithSpell;
 		}
@@ -215,7 +215,7 @@ namespace WrightWay.YellowVR
 		/// <param name="parent">The root of the <see cref="ParticleSystem"/>s.</param>
 		public void SetParticleColor(GameObject parent)
 		{
-			spell.SetParticleColor(parent, caster.owner.color);
+			spell.SetParticleColor(parent, caster.manaInterface.color);
 		}
 	}
 }
