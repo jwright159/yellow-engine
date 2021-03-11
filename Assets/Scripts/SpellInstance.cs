@@ -32,7 +32,6 @@ namespace WrightWay.YellowVR
 		[NonSerialized]
 		public EnergyTransferer transferer;
 
-		private Caster _caster;
 		/// <summary>
 		/// The <see cref="Caster"/> that "owns" this <see cref="SpellInstance"/>.
 		/// </summary>
@@ -45,6 +44,7 @@ namespace WrightWay.YellowVR
 				spell.SetParticleColor(gameObject, _caster.manaInterface.color);
 			}
 		}
+		private Caster _caster;
 
 		/// <summary>
 		/// How long in seconds this <see cref="SpellInstance"/> has been alive.
