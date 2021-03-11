@@ -33,7 +33,7 @@ namespace WrightWay.YellowVR
 		public ManaInterface manaInterface;
 
 		/// <summary>
-		/// Divisor for <see cref="Spell.chargeRate"/>. Controls how fast the <see cref="Caster"/> works.
+		/// Multiplier for <see cref="Spell.chargeRate"/>. Controls how fast the <see cref="Caster"/> works.
 		/// </summary>
 		public float timeEfficiency = 1;
 
@@ -78,7 +78,7 @@ namespace WrightWay.YellowVR
 		{
 			if (isCharging)
 			{
-				float cost = spellInstance.spell.ChargeCost(Time.deltaTime / timeEfficiency) / costEfficiency;
+				float cost = spellInstance.spell.ChargeCost(Time.deltaTime * timeEfficiency) / costEfficiency;
 				if (cost > manaInterface.mana)
 				{
 					Debug.Log($"Firing from lack of mana, need {cost}, have {manaInterface.mana}");

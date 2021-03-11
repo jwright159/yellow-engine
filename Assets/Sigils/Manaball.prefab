@@ -50,7 +50,7 @@ MonoBehaviour:
   destructionPrefab: {fileID: 3764288974784510305, guid: 8acc42c3693f76f448401989e828ff25,
     type: 3}
   fireFactor: 1
-  forceFactor: 1
+  forceFactor: 0
 --- !u!114 &2285959441240656928
 MonoBehaviour:
   m_ObjectHideFlags: 0
