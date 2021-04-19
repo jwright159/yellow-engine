@@ -56,7 +56,7 @@ namespace WrightWay.YellowVR
 
 		protected override void OnHandHoverEnd(Hand hand)
 		{
-			if (caster.isCharging)
+			if (caster.hasSpellInstance)
 			{
 				Debug.Log("Firing from letting go");
 				caster.Fire();

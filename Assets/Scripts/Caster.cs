@@ -55,12 +55,35 @@ namespace WrightWay.YellowVR
 		/// <summary>
 		/// A <see cref="SpellInstance"/> that is charging from the <see cref="Caster"/>, if there is one.
 		/// </summary>
-		private SpellInstance spellInstance;
+		private SpellInstance spellInstance
+		{
+			get => _spellInstance;
+			set
+			{
+				if (hasSpellInstance)
+				{
+					spellInstance.Fire(); // This is probably wanted behavior
+				}
+				_spellInstance = value;
+				if (hasSpellInstance)
+				{
+					spellInstance.transform.parent = transform;
+					spellInstance.caster = this;
+					spellInstance.Reattach();
+				}
+			}
+		}
+		private SpellInstance _spellInstance;
+
+		/// <summary>
+		/// Whether the <see cref="spellInstance"/> exists.
+		/// </summary>
+		public bool hasSpellInstance => spellInstance != null;
 
 		/// <summary>
 		/// Whether or not the <see cref="spellInstance"/> exists and is charging.
 		/// </summary>
-		public bool isCharging => spellInstance != null;
+		public bool isCharging => hasSpellInstance && spellInstance.state == SpellInstance.SpellState.Charging;
 
 		/// <summary>
 		/// Set up the UI elements.
@@ -76,8 +99,9 @@ namespace WrightWay.YellowVR
 		/// </summary>
 		private void Update()
 		{
-			if (isCharging)
+			if (hasSpellInstance)
 			{
+				// If holding a thing at all, remove your mana, but only charge it if it's charging
 				float cost = spellInstance.spell.ChargeCost(Time.deltaTime * timeEfficiency) / costEfficiency;
 				if (cost > manaInterface.mana)
 				{
@@ -87,7 +111,10 @@ namespace WrightWay.YellowVR
 				else
 				{
 					manaInterface.mana -= cost;
-					spellInstance.Charge(cost);
+					if (isCharging)
+					{
+						spellInstance.Charge(cost);
+					}
 				}
 			}
 
@@ -99,9 +126,19 @@ namespace WrightWay.YellowVR
 		/// </summary>
 		public void StartCharging()
 		{
-			spellInstance = sigil.CreateInstance(this);
-			spellInstance.transform.parent = transform;
-			spellInstance.caster = this;
+			Attach(sigil.CreateInstance(this));
+		}
+
+		/// <summary>
+		/// Attach a <see cref="SpellInstance"/> to the caster.
+		/// </summary>
+		/// <param name="newInstance">The new instance to attach.</param>
+		/// <returns>Whether this caused a spell to fire.</returns>
+		public bool Attach(SpellInstance newInstance)
+		{
+			bool rtn = hasSpellInstance;
+			spellInstance = newInstance;
+			return rtn;
 		}
 
 		/// <summary>
@@ -109,7 +146,6 @@ namespace WrightWay.YellowVR
 		/// </summary>
 		public void Fire()
 		{
-			spellInstance.Fire();
 			spellInstance = null;
 		}
 
@@ -125,7 +161,7 @@ namespace WrightWay.YellowVR
 				StartCharging();
 				return SpellInstance.SpellState.Charging;
 			}
-			else if (hand.GetGrabEnding() != GrabTypes.None && isCharging)
+			else if (hand.GetGrabEnding() != GrabTypes.None && hasSpellInstance)
 			{
 				Debug.Log("Firing from letting go");
 				Fire();

@@ -53,6 +53,7 @@ MonoBehaviour:
   retriggers: []
   target: {fileID: 0}
   primaryElement: {fileID: 11400000, guid: 3f80a284dfa175d42bb591b7fa2de774, type: 2}
+  holdRate: 10
 --- !u!114 &-3215668450105936575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +84,7 @@ MonoBehaviour:
   prefab: {fileID: 6329638895931392084, guid: 86c2040e4c750f843952b3a2081f83f4, type: 3}
   destructionPrefab: {fileID: 3764288974784510305, guid: 8010b1df0f600174ebeef3dbe1fb3b28,
     type: 3}
+  timeout: 2
 --- !u!114 &-8551233751035351865
 MonoBehaviour:
   m_ObjectHideFlags: 0

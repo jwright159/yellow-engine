@@ -23,6 +23,11 @@ namespace WrightWay.YellowVR
 		public ParticleSystem destructionPrefab;
 
 		/// <summary>
+		/// The time in seconds before the <see cref="SpellInstance"/> is forcefully destroyed.
+		/// </summary>
+		public float timeout = 2;
+
+		/// <summary>
 		/// An arbitrary minimum mana cost to use this target with.
 		/// </summary>
 		public abstract float minimumManaCost { get; }
@@ -36,6 +41,7 @@ namespace WrightWay.YellowVR
 		public SpellInstance CreateInstance(Element element, Caster caster)
 		{
 			SpellInstance instance = Instantiate(prefab);
+			instance.timeout = timeout;
 			instance.AddParticleSystem(element.particleSystem);
 			return instance;
 		}

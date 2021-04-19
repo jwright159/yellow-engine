@@ -18,6 +18,7 @@ namespace WrightWay.YellowVR
 		/// <summary>
 		/// The time in seconds before the <see cref="SpellInstance"/> is forcefully destroyed.
 		/// </summary>
+		[NonSerialized]
 		public float timeout = 2;
 
 		/// <summary>
@@ -64,7 +65,13 @@ namespace WrightWay.YellowVR
 		/// The current state of the <see cref="SpellInstance"/>.
 		/// </summary>
 		public SpellState state { get; protected set; }
-		public enum SpellState { Charging, Active, Dead }
+		/// <summary>
+		/// Charging: Attached to a caster and recieving mana.
+		/// Active: Out in the world.
+		/// Inactive: Attached to a caster and not doing anything.
+		/// Dead: Dead.
+		/// </summary>
+		public enum SpellState { Charging, Active, Inactive, Dead }
 
 		/// <summary>
 		/// An event that is raised when this <see cref="SpellInstance"/> collides with another <see cref="SpellInstance"/>.
@@ -84,11 +91,8 @@ namespace WrightWay.YellowVR
 		/// </summary>
 		private void Start()
 		{
+			Reattach();
 			state = SpellState.Charging;
-			transform.localPosition = Vector3.zero;
-			transform.localRotation = Quaternion.identity;
-			transform.localScale = Vector3.zero;
-			spell.SetParticleColor(gameObject, caster.manaInterface.color);
 
 			CollidedWithSpell += spell.CollideWithSpell;
 		}
@@ -112,6 +116,9 @@ namespace WrightWay.YellowVR
 				case SpellState.Active:
 					lifetime += Time.deltaTime;
 					//spell.UpdateInstance(this); // Use Fixed for physics
+					break;
+
+				case SpellState.Inactive:
 					break;
 
 				case SpellState.Dead:
@@ -140,7 +147,7 @@ namespace WrightWay.YellowVR
 		/// <param name="collision">The collision we just entered.</param>
 		private void OnCollisionEnter(Collision collision)
 		{
-			Debug.Log($"Colliding with {collision.collider}");
+			Debug.Log($"Colliding {gameObject} with {collision.collider}");
 			if (state == SpellState.Charging)
 			{
 				Debug.Log("Firing from collision");
@@ -195,6 +202,21 @@ namespace WrightWay.YellowVR
 				transform.SetParent(null);
 				spell.Fire(this);
 			}
+		}
+
+		/// <summary>
+		/// Attach this instance to its current <see cref="caster"/>.
+		/// </summary>
+		public void Reattach()
+		{
+			state = SpellState.Inactive;
+			transform.SetParent(caster.transform);
+			transform.localPosition = Vector3.zero;
+			transform.localRotation = Quaternion.identity;
+			transform.localScale = Vector3.one;
+			transferer.rigidbody.velocity = Vector3.zero;
+			transferer.rigidbody.angularVelocity = Vector3.zero;
+			lifetime = 0;
 		}
 
 		/// <summary>

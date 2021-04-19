@@ -22,7 +22,7 @@ namespace WrightWay.YellowVR
 
 		private void Start()
 		{
-			caster.StartCharging();
+			
 		}
 
 		private void Update()
@@ -33,7 +33,7 @@ namespace WrightWay.YellowVR
 				time = 0;
 				caster.Fire();
 			}
-			else if (time > 1 && !caster.isCharging)
+			else if (time > 1 && !caster.hasSpellInstance)
 			{
 				caster.StartCharging();
 			}
