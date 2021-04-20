@@ -26,7 +26,7 @@ namespace WrightWay.YellowVR.Spells
 			// Only for mana-based spells
 			if (primaryElement == senderInstance.transferer.manaInterface.element)
 			{
-				Debug.Log("Linking spell");
+				Debug.Log("Linking spell", this);
 				if (linkingElement == senderInstance.transferer.soulInterface.element)
 				{
 					// This just links spells to caster. See Capture.cs for connecting to caster.

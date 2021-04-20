@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Valve.VR.InteractionSystem;
 
 namespace WrightWay.YellowVR
 {
@@ -105,7 +103,7 @@ namespace WrightWay.YellowVR
 				float cost = spellInstance.spell.ChargeCost(Time.deltaTime * timeEfficiency) / costEfficiency;
 				if (cost > manaInterface.mana)
 				{
-					Debug.Log($"Firing from lack of mana, need {cost}, have {manaInterface.mana}");
+					Debug.Log($"Firing from lack of mana, need {cost}, have {manaInterface.mana}", this);
 					Fire();
 				}
 				else
@@ -147,27 +145,6 @@ namespace WrightWay.YellowVR
 		public void Fire()
 		{
 			spellInstance = null;
-		}
-
-		/// <summary>
-		/// <see cref="Hand"/> events to start/stop casting.
-		/// </summary>
-		/// <param name="hand"></param>
-		/// <returns></returns>
-		public SpellInstance.SpellState HandleHand(Hand hand)
-		{
-			if (hand.GetGrabStarting() != GrabTypes.None)
-			{
-				StartCharging();
-				return SpellInstance.SpellState.Charging;
-			}
-			else if (hand.GetGrabEnding() != GrabTypes.None && hasSpellInstance)
-			{
-				Debug.Log("Firing from letting go");
-				Fire();
-				return SpellInstance.SpellState.Active;
-			}
-			return SpellInstance.SpellState.Dead;
 		}
 	}
 }

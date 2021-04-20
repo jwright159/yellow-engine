@@ -148,10 +148,10 @@ namespace WrightWay.YellowVR
 		/// <param name="collision">The collision we just entered.</param>
 		private void OnCollisionEnter(Collision collision)
 		{
-			Debug.Log($"Colliding {gameObject} with {collision.collider}");
+			Debug.Log($"Colliding with {collision.collider}", this);
 			if (state == SpellState.Charging)
 			{
-				Debug.Log("Firing from collision");
+				Debug.Log("Firing from collision", this);
 				caster.Fire();
 			}
 
