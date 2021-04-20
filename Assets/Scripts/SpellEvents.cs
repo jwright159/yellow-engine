@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine.Events;
 
 namespace WrightWay.YellowVR.SpellEvents
 {
@@ -8,7 +9,7 @@ namespace WrightWay.YellowVR.SpellEvents
 	}
 
 	/// <summary>
-	/// <see cref="EventArgs"/> for <see cref="SpellInstance.CollidedWithSpell"/>.
+	/// <see cref="EventArgs"/> for <see cref="SpellInstance.OnCollideWithSpell"/>.
 	/// </summary>
 	public class CollideWithSpellEventArgs : EventArgs
 	{
@@ -20,4 +21,7 @@ namespace WrightWay.YellowVR.SpellEvents
 		public SpellInstance senderInstance { get; }
 		public SpellInstance collisionInstance { get; }
 	}
+
+	[Serializable]
+	public class CollideWithSpellEvent : UnityEvent<SpellInstance, SpellInstance> { }
 }

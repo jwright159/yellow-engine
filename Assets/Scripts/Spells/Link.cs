@@ -21,16 +21,16 @@ namespace WrightWay.YellowVR.Spells
 	{
 		public Element linkingElement;
 
-		public override void CollideWithSpell(object sender, CollideWithSpellEventArgs args)
+		public override void CollideWithSpell(SpellInstance senderInstance, SpellInstance collisionInstance)
 		{
 			// Only for mana-based spells
-			if (primaryElement == args.senderInstance.transferer.manaInterface.element)
+			if (primaryElement == senderInstance.transferer.manaInterface.element)
 			{
 				Debug.Log("Linking spell");
-				if (linkingElement == args.senderInstance.transferer.soulInterface.element)
+				if (linkingElement == senderInstance.transferer.soulInterface.element)
 				{
 					// This just links spells to caster. See Capture.cs for connecting to caster.
-					args.collisionInstance.caster = args.senderInstance.caster;
+					collisionInstance.caster = senderInstance.caster;
 				}
 			}
 		}

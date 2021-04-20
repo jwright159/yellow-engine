@@ -21,7 +21,7 @@ namespace WrightWay.YellowVR.Spells
 	{
 		public Element displacedElement;
 
-		public override void CollideWithSpell(object sender, CollideWithSpellEventArgs args)
+		public override void CollideWithSpell(SpellInstance senderInstance, SpellInstance collisionInstance)
 		{
 			
 		}

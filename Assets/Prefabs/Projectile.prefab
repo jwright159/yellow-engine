@@ -101,4 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleParents:
   - {fileID: 3758228827800330236}
-  timeout: 10
+  OnCollideWithSpell:
+    m_PersistentCalls:
+      m_Calls: []

@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 using WrightWay.YellowVR.SpellEvents;
 
 namespace WrightWay.YellowVR
@@ -76,7 +77,7 @@ namespace WrightWay.YellowVR
 		/// <summary>
 		/// An event that is raised when this <see cref="SpellInstance"/> collides with another <see cref="SpellInstance"/>.
 		/// </summary>
-		public event EventHandler<CollideWithSpellEventArgs> CollidedWithSpell;
+		public CollideWithSpellEvent OnCollideWithSpell;
 
 		/// <summary>
 		/// Assign some values.
@@ -94,7 +95,7 @@ namespace WrightWay.YellowVR
 			Reattach();
 			state = SpellState.Charging;
 
-			CollidedWithSpell += spell.CollideWithSpell;
+			OnCollideWithSpell.AddListener(spell.CollideWithSpell);
 		}
 
 
@@ -157,7 +158,7 @@ namespace WrightWay.YellowVR
 			SpellInstance collisionInstance = collision.gameObject.GetComponent<SpellInstance>();
 			if (collisionInstance)
 			{
-				CollidedWithSpell?.Invoke(this, new CollideWithSpellEventArgs(this, collisionInstance));
+				OnCollideWithSpell.Invoke(this, collisionInstance);
 			}
 		}
 

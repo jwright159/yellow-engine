@@ -29,7 +29,7 @@ namespace WrightWay.YellowVR
 			switch (trigger)
 			{
 				case SpellEvent.CollideWithSpell:
-					instance.CollidedWithSpell += spell.CollideWithSpell;
+					instance.OnCollideWithSpell.AddListener(spell.CollideWithSpell);
 					break;
 				default:
 					throw new NullReferenceException("Retrigger trigger cannot be null.");

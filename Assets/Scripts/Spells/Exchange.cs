@@ -24,13 +24,13 @@ namespace WrightWay.YellowVR.Spells
 	{
 		public Element consumedElement;
 
-		public override void CollideWithSpell(object sender, CollideWithSpellEventArgs args)
+		public override void CollideWithSpell(SpellInstance senderInstance, SpellInstance collisionInstance)
 		{
 			// This isn't supposed to be here.
-			EnergyTransferer transferer = args.collisionInstance.GetComponent<EnergyTransferer>();
+			EnergyTransferer transferer = collisionInstance.GetComponent<EnergyTransferer>();
 			if (transferer)
 			{
-				transferer.Absorb(primaryElement, args.senderInstance.mana);
+				transferer.Absorb(primaryElement, senderInstance.mana);
 				//Debug.Log($"Vel: {instance.transferer.rigidbody.velocity.sqrMagnitude}, Mass: {instance.transferer.rigidbody.mass}, KE: {instance.transferer.GetKineticEnergy().sqrMagnitude}");
 				//transferer.AbsorbKineticEnergy(instance.transferer.GetKineticEnergy()); // ya know what, rigidbody already does this
 			}

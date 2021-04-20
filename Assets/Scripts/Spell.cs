@@ -92,11 +92,11 @@ namespace WrightWay.YellowVR
 		}
 
 		/// <summary>
-		/// The basic method to be called when the <see cref="SpellInstance.CollidedWithSpell"/> event is raised.
+		/// The basic method to be called when the <see cref="SpellInstance.OnCollideWithSpell"/> event is raised.
 		/// </summary>
 		/// <param name="sender">Unused. Not sure why a basic <see cref="object"/> is used here to begin with.</param>
 		/// <param name="args">The <see cref="CollideWithSpellEventArgs"/> that contains the event data.</param>
-		public abstract void CollideWithSpell(object sender, CollideWithSpellEventArgs args);
+		public abstract void CollideWithSpell(SpellInstance senderInstance, SpellInstance collisionInstance);
 
 		/// <summary>
 		/// The total mana cost of the spell to a <see cref="SpellInstance.caster"/> over a certain amount of <paramref name="time"/>.

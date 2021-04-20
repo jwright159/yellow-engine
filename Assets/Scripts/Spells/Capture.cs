@@ -24,15 +24,15 @@ namespace WrightWay.YellowVR.Spells
 		/// </summary>
 		public float holdRate = 10;
 
-		public override void CollideWithSpell(object sender, CollideWithSpellEventArgs args)
+		public override void CollideWithSpell(SpellInstance senderInstance, SpellInstance collisionInstance)
 		{
-			if (primaryElement == args.senderInstance.transferer.manaInterface.element)
+			if (primaryElement == senderInstance.transferer.manaInterface.element)
 			{
 				Debug.Log("Capturing spell");
 				// This just physically connects spells to the caster. See Link.cs for linking spells to the caster.
 
-				args.collisionInstance.spell.chargeRate = holdRate;
-				args.senderInstance.caster.Attach(args.collisionInstance);
+				collisionInstance.spell.chargeRate = holdRate;
+				senderInstance.caster.Attach(collisionInstance);
 			}
 		}
 
