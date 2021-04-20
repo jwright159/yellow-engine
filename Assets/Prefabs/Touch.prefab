@@ -182,7 +182,9 @@ MonoBehaviour:
   - {fileID: 7827339137054083378}
   - {fileID: 7199810890520649855}
   - {fileID: 5556735586508572490}
-  timeout: 30
+  OnCollideWithSpell:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8799573072967719404
 GameObject:
   m_ObjectHideFlags: 0

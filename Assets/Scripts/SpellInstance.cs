@@ -79,17 +79,11 @@ namespace WrightWay.YellowVR
 		/// </summary>
 		public CollideWithSpellEvent OnCollideWithSpell;
 
-		/// <summary>
-		/// Assign some values.
-		/// </summary>
 		private void Awake()
 		{
 			transferer = GetComponent<EnergyTransferer>();
 		}
 
-		/// <summary>
-		/// Reset some values.
-		/// </summary>
 		private void Start()
 		{
 			Reattach();
@@ -98,10 +92,6 @@ namespace WrightWay.YellowVR
 			OnCollideWithSpell.AddListener(spell.CollideWithSpell);
 		}
 
-
-		/// <summary>
-		/// It's Update. Imagine that.
-		/// </summary>
 		private void Update()
 		{
 			if (lifetime >= timeout)
@@ -131,9 +121,6 @@ namespace WrightWay.YellowVR
 			}
 		}
 
-		/// <summary>
-		/// It's FixedUpdate. Guess what that's for.
-		/// </summary>
 		private void FixedUpdate()
 		{
 			if (state == SpellState.Active)
@@ -142,10 +129,6 @@ namespace WrightWay.YellowVR
 			}
 		}
 
-		/// <summary>
-		/// Can I stop writing documentation now?
-		/// </summary>
-		/// <param name="collision">The collision we just entered.</param>
 		private void OnCollisionEnter(Collision collision)
 		{
 			Debug.Log($"Colliding with {collision.collider}", this);

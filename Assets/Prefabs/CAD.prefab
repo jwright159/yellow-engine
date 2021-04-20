@@ -622,6 +622,20 @@ MonoBehaviour:
   costEfficiency: 1
   textField: {fileID: 3403101810132081134}
   manaBar: {fileID: 8556380637809675250}
+--- !u!64 &2013170516076895237
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3911313278238043457}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8989324824668654689, guid: 27993da70c18f6a429c4db54f3bc12e3, type: 3}
 --- !u!1001 &5000732412983571528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -716,6 +730,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27993da70c18f6a429c4db54f3bc12e3, type: 3}
+--- !u!1 &3911313278238043457 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 27993da70c18f6a429c4db54f3bc12e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5000732412983571528}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8056589666967378 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 27993da70c18f6a429c4db54f3bc12e3,
