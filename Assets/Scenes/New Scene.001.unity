@@ -392,10 +392,6 @@ MonoBehaviour:
   useLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  flatscreenCamera: {fileID: 0}
-  flatscreenRaycastDistance: 0
-  flatscreenAim: {fileID: 0}
-  flatscreenAimDistance: 0
 --- !u!1 &258142179
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,7 +2489,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1464751946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eca4756d790669d43ba187269cec1c43, type: 3}
+  m_Script: {fileID: 11500000, guid: 81c59e27fa855aa458a597d04d0d1724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   useCollisionPoint: {fileID: 1464751947}

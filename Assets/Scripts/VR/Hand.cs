@@ -33,27 +33,6 @@ namespace WrightWay.VR
 		public LayerMask useLayerMask = -1;
 
 		/// <summary>
-		/// The camera with which to raycast in non-VR.
-		/// </summary>
-		public Camera flatscreenCamera;
-		/// <summary>
-		/// The maximum distance to raycast at in non-VR.
-		/// </summary>
-		public float flatscreenRaycastDistance;
-		/// <summary>
-		/// A debug object showing where our raycast is coming from. Should be on the Ignore Raycast layer.
-		/// </summary>
-		public Transform flatscreenAim;
-		/// <summary>
-		/// The distance from the camera to the aim object.
-		/// </summary>
-		public float flatscreenAimDistance;
-		/// <summary>
-		/// The last distance that a raycast was hit at.
-		/// </summary>
-		private float flatscreenLastHitDistance;
-
-		/// <summary>
 		/// The actual SteamVR interface.
 		/// </summary>
 		private SteamVR_Behaviour_Pose behaviourPose;
@@ -67,27 +46,22 @@ namespace WrightWay.VR
 		/// </summary>
 		private Collider[] overlappingColliders = new Collider[MaxOverlappingColliders];
 
-		private void Awake()
+		protected virtual void Awake()
 		{
 			behaviourPose = GetComponent<SteamVR_Behaviour_Pose>();
 		}
 
-		private void Start()
+		protected virtual void Start()
 		{
 			if (gameObject.layer == 0)
 				Debug.LogWarning("Hand is on default layer, change it to the Hand layer lamo", this);
 			//else
 				//useLayerMask &= ~(1 << gameObject.layer); // Don't even check to be usable with yourself
 				// wait hold on I need the gun to be Hand
-
-			// Start this with a value so we don't have the hand in our flatscreen face
-			flatscreenLastHitDistance = flatscreenRaycastDistance;
 		}
 
-		private void Update()
+		protected virtual void Update()
 		{
-			if (flatscreenCamera != null)
-				UpdateFlatscreenHand();
 			UpdateUseState();
 		}
 
@@ -96,8 +70,8 @@ namespace WrightWay.VR
 		/// </summary>
 		private void UpdateUseState()
 		{
-			bool used = pinchAction.GetStateDown(behaviourPose.inputSource) || (flatscreenCamera != null && Input.GetMouseButtonDown(0));
-			bool unused = pinchAction.GetStateUp(behaviourPose.inputSource) || (flatscreenCamera != null && Input.GetMouseButtonUp(0));
+			bool used = GetUse();
+			bool unused = GetUnuse();
 			
 			if (used || unused)
 			{
@@ -157,38 +131,14 @@ namespace WrightWay.VR
 			return closestUsable;
 		}
 
-		/// <summary>
-		/// Update a hand based on the mouse cursor on the screen.
-		/// </summary>
-		public void UpdateFlatscreenHand()
+		protected virtual bool GetUse()
 		{
-			Ray ray = flatscreenCamera.ScreenPointToRay(Input.mousePosition);
-
-			// Move the hand and aim so we don't hit them
-			transform.position = flatscreenCamera.transform.TransformPoint(Vector3.back * 1000);
-			// HACK: For some reason I can't move aim in order to not get hit, so it has been banished to the ignore raycast layer.
-
-			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit, flatscreenRaycastDistance))
-			{
-				// Put the hand on the hit point so we might interact with it
-				transform.position = hit.point;
-
-				flatscreenLastHitDistance = hit.distance;
-			}
-			else
-			{
-				// Didn't hit anything, but move the hand around in the empty air
-				transform.position = ray.origin + ray.direction * flatscreenLastHitDistance;
-			}
-
-			// Update the aim for debugging purposes (after the raycast)
-			if (flatscreenAim != null)
-			{
-				flatscreenAim.position = ray.origin + flatscreenAimDistance * ray.direction;
-				flatscreenAim.rotation = Quaternion.LookRotation(ray.direction, Vector3.up);
-			}
+			return pinchAction.GetStateDown(behaviourPose.inputSource);
 		}
-		// TODO: Make our own flatscreen camera controller
+
+		protected virtual bool GetUnuse()
+		{
+			return pinchAction.GetStateUp(behaviourPose.inputSource);
+		}
 	}
 }
