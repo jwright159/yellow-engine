@@ -1740,6 +1740,44 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875395848}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &889611466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4883994672457121196, guid: 08321d163ee167648ad88f91d9c78e25,
+    type: 3}
+  m_PrefabInstance: {fileID: 1598299765}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &889611470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889611466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1001 &956069945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2331,6 +2369,7 @@ GameObject:
   - component: {fileID: 1384688360}
   - component: {fileID: 1384688359}
   - component: {fileID: 1384688361}
+  - component: {fileID: 1384688362}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -2418,6 +2457,38 @@ MonoBehaviour:
   speed: 4
   shiftSpeed: 16
   showInstructions: 1
+--- !u!114 &1384688362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384688357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1464751946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2622,12 +2693,17 @@ PrefabInstance:
         type: 3}
       propertyPath: mainCamera
       value: 
-      objectReference: {fileID: 1778594020}
+      objectReference: {fileID: 1384688360}
     - target: {fileID: -6380362758646870702, guid: 08321d163ee167648ad88f91d9c78e25,
         type: 3}
       propertyPath: otherPortal
       value: 
       objectReference: {fileID: 1730919416}
+    - target: {fileID: 4883994672457121196, guid: 08321d163ee167648ad88f91d9c78e25,
+        type: 3}
+      propertyPath: m_Name
+      value: Camera2
+      objectReference: {fileID: 0}
     - target: {fileID: 7722385135937154712, guid: 08321d163ee167648ad88f91d9c78e25,
         type: 3}
       propertyPath: m_RootOrder
@@ -2697,6 +2773,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983393394024279062, guid: 08321d163ee167648ad88f91d9c78e25,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08321d163ee167648ad88f91d9c78e25, type: 3}
@@ -4238,6 +4319,8 @@ MonoBehaviour:
   noSteamVRFallbackCamera: {fileID: 0}
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
+  noSteamVRFallbackAim: {fileID: 0}
+  noSteamVRFallbackAimDistance: 2
   renderModelPrefab: {fileID: 1000012617731570, guid: 837f93beb9a614743ae3a2c0ada7c388,
     type: 3}
   renderModels: []
@@ -4340,6 +4423,8 @@ MonoBehaviour:
   noSteamVRFallbackCamera: {fileID: 1778533544}
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
+  noSteamVRFallbackAim: {fileID: 0}
+  noSteamVRFallbackAimDistance: 2
   renderModelPrefab: {fileID: 0}
   renderModels: []
   mainRenderModel: {fileID: 0}
@@ -4451,6 +4536,8 @@ MonoBehaviour:
   noSteamVRFallbackCamera: {fileID: 0}
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
+  noSteamVRFallbackAim: {fileID: 0}
+  noSteamVRFallbackAimDistance: 2
   renderModelPrefab: {fileID: 1000011547835092, guid: d5082f7d9f947374197e0a97786f4e40,
     type: 3}
   renderModels: []
@@ -6486,12 +6573,17 @@ PrefabInstance:
         type: 3}
       propertyPath: mainCamera
       value: 
-      objectReference: {fileID: 1778594020}
+      objectReference: {fileID: 1384688360}
     - target: {fileID: -6380362758646870702, guid: 08321d163ee167648ad88f91d9c78e25,
         type: 3}
       propertyPath: otherPortal
       value: 
       objectReference: {fileID: 736843458}
+    - target: {fileID: 4883994672457121196, guid: 08321d163ee167648ad88f91d9c78e25,
+        type: 3}
+      propertyPath: m_Name
+      value: Camera1
+      objectReference: {fileID: 0}
     - target: {fileID: 7722385135937154712, guid: 08321d163ee167648ad88f91d9c78e25,
         type: 3}
       propertyPath: m_RootOrder
@@ -6556,6 +6648,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983393394024279062, guid: 08321d163ee167648ad88f91d9c78e25,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08321d163ee167648ad88f91d9c78e25, type: 3}
