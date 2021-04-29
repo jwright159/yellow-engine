@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739b6665c6253da41bd54389038ffa25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sigil: {fileID: 4948523530019225043, guid: 1ac09a40c519a6b47b7d78c775a2ec4d, type: 3}
+  _sigil: {fileID: 4948523530019225043, guid: e70fb9bcc8feb48489c5c5ab5255b734, type: 3}
   manaInterface: {fileID: 11400000, guid: 830d204aec476d740ae0cb272ac74f33, type: 2}
   timeEfficiency: 1
   costEfficiency: 1
