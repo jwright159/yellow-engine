@@ -63,10 +63,11 @@ namespace WrightWay.VR
 		protected virtual void Update()
 		{
 			UpdateUseState();
+			UpdateGrabState();
 		}
 
 		/// <summary>
-		/// Fire use and unuse events to the nearest usable interactable.
+		/// Fire use and unuse events to the nearest usable.
 		/// </summary>
 		private void UpdateUseState()
 		{
@@ -75,8 +76,7 @@ namespace WrightWay.VR
 			
 			if (used || unused)
 			{
-				Usable usable = GetClosestUsable();
-				Debug.Log($"Doing something to {usable} around {useCollisionPoint.position} within {useCollisionRadius}", this);
+				Usable usable = GetClosestComponent<Usable>();
 				if (usable)
 				{
 					if (used)
@@ -88,26 +88,47 @@ namespace WrightWay.VR
 		}
 
 		/// <summary>
-		/// Get the closest usable <see cref="Usable"/> to the <see cref="useCollisionPoint"/> within the <see cref="useCollisionRadius"/>.
+		/// Fire grab and ungrab events to the nearest grabbable.
 		/// </summary>
-		private Usable GetClosestUsable()
+		private void UpdateGrabState()
 		{
-			return GetClosestUsable(useCollisionPoint.position, useCollisionRadius);
+			bool grabbed = GetGrab();
+			bool ungrabbed = GetGrab();
+
+			if (grabbed || ungrabbed)
+			{
+				/*Grabbable grabbable = GetClosestComponent<Grabbable>();
+				if (grabbable)
+				{
+					if (grabbed)
+						grabbable.Grab();
+					if (ungrabbed)
+						grabbable.Ungrab();
+				}*/
+			}
 		}
 
 		/// <summary>
-		/// Get the closest usable <see cref="Usable"/> to the <paramref name="position"/> within the <paramref name="radius"/>.
+		/// Get the closest object with a component to the <see cref="useCollisionPoint"/> within the <see cref="useCollisionRadius"/>.
+		/// </summary>
+		private T GetClosestComponent<T>() where T : MonoBehaviour
+		{
+			return GetClosestComponent<T>(useCollisionPoint.position, useCollisionRadius);
+		}
+
+		/// <summary>
+		/// Get the closest object with a component to the <paramref name="position"/> within the <paramref name="radius"/>.
 		/// </summary>
 		/// <param name="position"></param>
 		/// <param name="radius"></param>
-		private Usable GetClosestUsable(Vector3 position, float radius)
+		private T GetClosestComponent<T>(Vector3 position, float radius) where T : MonoBehaviour
 		{
 			int colliderAmount = Physics.OverlapSphereNonAlloc(position, radius, overlappingColliders, useLayerMask);
 
 			if (colliderAmount >= MaxOverlappingColliders)
 				Debug.LogWarning("Hand collider amount limit reached, might lose some results");
 
-			Usable closestUsable = null;
+			T closestComponent = default;
 			float closestDistance = float.MaxValue; // Can't just use radius bc it's touching by faces not by centers lmao
 
 			for (int i = 0; i < colliderAmount; i++)
@@ -115,20 +136,20 @@ namespace WrightWay.VR
 				Collider collider = overlappingColliders[i];
 				overlappingColliders[i] = null;
 
-				Usable usable = collider.GetComponentInParent<Usable>();
-				if (usable == null)
+				T component = collider.GetComponentInParent<T>();
+				if (component == null)
 					continue;
 
 				float distance = Vector3.Distance(position, collider.transform.position); // Something something sqrMagnitude
 
 				if (distance < closestDistance)
 				{
-					closestUsable = usable;
+					closestComponent = component;
 					closestDistance = distance;
 				}
 			}
 
-			return closestUsable;
+			return closestComponent;
 		}
 
 		protected virtual bool GetUse()
@@ -139,6 +160,16 @@ namespace WrightWay.VR
 		protected virtual bool GetUnuse()
 		{
 			return pinchAction.GetStateUp(behaviourPose.inputSource);
+		}
+
+		protected virtual bool GetGrab()
+		{
+			return gripAction.GetStateDown(behaviourPose.inputSource);
+		}
+
+		protected virtual bool GetUngrab()
+		{
+			return gripAction.GetStateUp(behaviourPose.inputSource);
 		}
 	}
 }
