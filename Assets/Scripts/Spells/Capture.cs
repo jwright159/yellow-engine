@@ -28,7 +28,7 @@ namespace WrightWay.YellowVR.Spells
 		{
 			if (primaryElement == senderInstance.transferer.manaInterface.element)
 			{
-				Debug.Log("Capturing spell", this);
+				Debug.Log($"Capturing spell {collisionInstance.spell}", this);
 				// This just physically connects spells to the caster. See Link.cs for linking spells to the caster.
 
 				collisionInstance.spell.chargeRate = holdRate;

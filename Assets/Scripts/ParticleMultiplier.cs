@@ -12,7 +12,7 @@ namespace WrightWay.YellowVR
 	{
 		private ParticleSystem particles;
 		private float baseRate;
-		private new ParticleSystemRenderer renderer;
+		public new ParticleSystemRenderer renderer;
 		private Color[] baseColors;
 
 		private void Awake()
@@ -33,7 +33,7 @@ namespace WrightWay.YellowVR
 
 		public void SetColor(Color color)
 		{
-			for (int i = 0; i < baseColors.Length; i++)
+			for (int i = 0; i < renderer.materials.Length; i++) // Originally this was baseColors.Length but apparently in URP particle systems start with another Lit material???
 				renderer.materials[i].color = baseColors[i] * color;
 		}
 	}
