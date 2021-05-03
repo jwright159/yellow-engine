@@ -46,6 +46,12 @@ namespace WrightWay.VR
 		/// </summary>
 		private Collider[] overlappingColliders = new Collider[MaxOverlappingColliders];
 
+		/// <summary>
+		/// The <see cref="Usable"/> currently being used.
+		/// </summary>
+		// Perhaps make this a list if need be later
+		private Usable usingUsable;
+
 		protected virtual void Awake()
 		{
 			behaviourPose = GetComponent<SteamVR_Behaviour_Pose>();
@@ -73,18 +79,24 @@ namespace WrightWay.VR
 		{
 			bool used = GetUse();
 			bool unused = GetUnuse();
-			
-			if (used || unused)
+
+			if (usingUsable == null && used)
 			{
 				Usable usable = GetClosestComponent<Usable>();
 				if (usable)
 				{
-					if (used)
-						usable.Use();
-					if (unused)
-						usable.Unuse();
+					usingUsable = usable;
+					usingUsable.Use();
 				}
 			}
+
+			if (usingUsable != null && (unused || Vector3.Distance(transform.position, usingUsable.transform.position) > useCollisionRadius))
+			{
+				usingUsable.Unuse();
+				usingUsable = null;
+			}
+
+			// Now what kind of wacky interaction would happen if both of these fired at the same time? Hmm...
 		}
 
 		/// <summary>

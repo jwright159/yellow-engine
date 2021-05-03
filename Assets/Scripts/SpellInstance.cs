@@ -131,7 +131,7 @@ namespace WrightWay.YellowVR
 
 		private void OnCollisionEnter(Collision collision)
 		{
-			Debug.Log($"Colliding with {collision.collider}", this);
+			Debug.Log($"Colliding {this} with {collision.collider}", this);
 			if (state == SpellState.Charging)
 			{
 				Debug.Log("Firing from collision", this);

@@ -604,21 +604,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manaInterface: {fileID: 11400000, guid: 4258c1155acdb9f489b5f0574dca3b27, type: 2}
   manaRegen: 100
---- !u!114 &389533502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780235856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d1ddb06605fb724781f4381b32a5a2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  portals:
-  - {fileID: 1730919416}
-  - {fileID: 736843458}
 --- !u!1 &439493781
 GameObject:
   m_ObjectHideFlags: 0
@@ -2370,9 +2355,10 @@ GameObject:
   - component: {fileID: 1384688359}
   - component: {fileID: 1384688361}
   - component: {fileID: 1384688362}
+  - component: {fileID: 1384688363}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2489,6 +2475,18 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1384688363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384688357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30a2316e98e1dc4b97e432a1301f85c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1464751946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2781,21 +2779,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08321d163ee167648ad88f91d9c78e25, type: 3}
---- !u!114 &1650834976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780245024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d1ddb06605fb724781f4381b32a5a2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  portals:
-  - {fileID: 1730919416}
-  - {fileID: 736843458}
 --- !u!1 &1690804293 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4883994672457121196, guid: 08321d163ee167648ad88f91d9c78e25,
@@ -3837,7 +3820,6 @@ GameObject:
   - component: {fileID: 1780095556}
   - component: {fileID: 1778533544}
   - component: {fileID: 1790087922}
-  - component: {fileID: 389533502}
   - component: {fileID: 1780235857}
   m_Layer: 0
   m_Name: FallbackObjects
@@ -3908,7 +3890,7 @@ GameObject:
   - component: {fileID: 1778594020}
   - component: {fileID: 1790129842}
   - component: {fileID: 1788894256}
-  - component: {fileID: 1650834976}
+  - component: {fileID: 1780245025}
   m_Layer: 0
   m_Name: VRCamera
   m_TagString: MainCamera
@@ -3916,6 +3898,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1780245025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780245024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1780251074
 GameObject:
   m_ObjectHideFlags: 0
@@ -4801,7 +4815,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
