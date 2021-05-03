@@ -70,6 +70,7 @@ namespace WrightWay.VR
 				// Didn't hit anything, but move the hand around in the empty air
 				transform.position = ray.origin + ray.direction * flatscreenLastHitDistance;
 			}
+			transform.rotation = Quaternion.LookRotation(transform.position - flatscreenCamera.transform.position, Vector3.up);
 
 			// Update the aim for debugging purposes (after the raycast)
 			if (flatscreenAim != null)
