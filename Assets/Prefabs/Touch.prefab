@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 452094182090598345}
   - component: {fileID: 3516017014747843147}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: TouchSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7199810890520649855}
   - component: {fileID: 7076979022063665055}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: TouchSphere (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 3446306226245358664}
   - component: {fileID: 5595456151162230856}
   - component: {fileID: 6329638895931392084}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: Touch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5556735586508572490}
   - component: {fileID: 3522830455494028907}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: TouchSphere (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7827339137054083378}
   - component: {fileID: 5641033728559700750}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: TouchSphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

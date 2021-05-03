@@ -10,11 +10,13 @@ namespace WrightWay.VR
 		/// <summary>
 		/// Start using the object.
 		/// </summary>
-		public void Use();
+		/// <param name="hand">The hand using the object.</param>
+		public void Use(Hand hand);
 
 		/// <summary>
 		/// Stop using the object.
 		/// </summary>
-		public void Unuse();
+		/// <param name="hand">The hand unusing the object.</param>
+		public void Unuse(Hand hand);
 	}
 }

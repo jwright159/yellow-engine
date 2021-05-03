@@ -29,7 +29,7 @@ namespace WrightWay.VR
 		/// <summary>
 		/// Start using the object.
 		/// </summary>
-		public void Use()
+		public void Use(Hand hand)
 		{
 			OnUsed.Invoke();
 		}
@@ -37,7 +37,7 @@ namespace WrightWay.VR
 		/// <summary>
 		/// Stop using the object.
 		/// </summary>
-		public void Unuse()
+		public void Unuse(Hand hand)
 		{
 			OnUnused.Invoke();
 		}

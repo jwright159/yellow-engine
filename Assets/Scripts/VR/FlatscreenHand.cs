@@ -10,10 +10,17 @@ namespace WrightWay.VR
 		/// The camera with which to raycast in non-VR.
 		/// </summary>
 		public Camera flatscreenCamera;
+
 		/// <summary>
 		/// The maximum distance to raycast at in non-VR.
 		/// </summary>
 		public float flatscreenRaycastDistance;
+
+		/// <summary>
+		/// The mask for raycasting the flatscreen hand.
+		/// </summary>
+		public LayerMask flatscreenRaycastLayerMask = -1;
+
 		/// <summary>
 		/// A debug object showing where our raycast is coming from. Should be on the Ignore Raycast layer.
 		/// </summary>
@@ -22,6 +29,7 @@ namespace WrightWay.VR
 		/// The distance from the camera to the aim object.
 		/// </summary>
 		public float flatscreenAimDistance;
+
 		/// <summary>
 		/// The last distance that a raycast was hit at.
 		/// </summary>
@@ -49,12 +57,8 @@ namespace WrightWay.VR
 		{
 			Ray ray = flatscreenCamera.ScreenPointToRay(Input.mousePosition);
 
-			// Move the hand and aim so we don't hit them
-			transform.position = flatscreenCamera.transform.TransformPoint(Vector3.back * 1000);
-			// HACK: For some reason I can't move aim in order to not get hit, so it has been banished to the ignore raycast layer.
-
 			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit, flatscreenRaycastDistance))
+			if (Physics.Raycast(ray, out hit, flatscreenRaycastDistance, flatscreenRaycastLayerMask))
 			{
 				// Put the hand on the hit point so we might interact with it
 				transform.position = hit.point;
@@ -78,12 +82,22 @@ namespace WrightWay.VR
 
 		protected override bool GetUse<T>()
 		{
-			return base.GetUse<T>() || Input.GetMouseButtonDown(0);
+			return base.GetUse<T>() || Input.GetButtonDown(GetButtonName<T>());
 		}
 
 		protected override bool GetUnuse<T>()
 		{
-			return base.GetUnuse<T>() || Input.GetMouseButtonUp(0);
+			return base.GetUnuse<T>() || Input.GetButtonUp(GetButtonName<T>());
+		}
+
+		private string GetButtonName<T>() where T : IUsable
+		{
+			if (typeof(T).IsAssignableFrom(typeof(Usable)))
+				return "Fire1";
+			else if (typeof(T).IsAssignableFrom(typeof(Grabbable)))
+				return "Fire2";
+			else
+				return null;
 		}
 	}
 }

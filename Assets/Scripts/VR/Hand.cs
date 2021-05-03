@@ -62,17 +62,13 @@ namespace WrightWay.VR
 
 		protected virtual void Start()
 		{
-			if (gameObject.layer == 0)
-				Debug.LogWarning("Hand is on default layer, change it to the Hand layer lamo", this);
-			//else
-				//useLayerMask &= ~(1 << gameObject.layer); // Don't even check to be usable with yourself
-				// wait hold on I need the gun to be Hand
+
 		}
 
 		protected virtual void Update()
 		{
 			UpdateUseState<Usable>();
-			//UpdateUseState<Grabbable>();
+			UpdateUseState<Grabbable>();
 		}
 
 		/// <summary>
@@ -91,13 +87,13 @@ namespace WrightWay.VR
 				if (usable)
 				{
 					usingUsables.Add(typeof(T), usable);
-					usable.Use();
+					usable.Use(this);
 				}
 			}
 
 			if (usingUsable != null && (unused || Vector3.Distance(transform.position, usingUsable.transform.position) > useCollisionRadius))
 			{
-				usingUsable.Unuse();
+				usingUsable.Unuse(this);
 				usingUsables.Remove(typeof(T));
 			}
 
@@ -158,8 +154,9 @@ namespace WrightWay.VR
 			return GetAction<T>().GetStateUp(behaviourPose.inputSource);
 		}
 
-		protected SteamVR_Action_Boolean GetAction<T>() where T : IUsable
+		private SteamVR_Action_Boolean GetAction<T>() where T : IUsable
 		{
+			// HACK: This sucks.
 			if (typeof(T).IsAssignableFrom(typeof(Usable)))
 				return useAction;
 			else if (typeof(T).IsAssignableFrom(typeof(Grabbable)))

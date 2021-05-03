@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 91017597}
   - component: {fileID: 91017596}
   - component: {fileID: 91017598}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GunTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,15 +388,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useCollisionPoint: {fileID: 213216467}
   useCollisionRadius: 0.075
-  pinchAction:
+  useAction:
     actionPath: /actions/default/in/GrabPinch
-    needsReinit: 1
-  gripAction:
+    needsReinit: 0
+  grabAction:
     actionPath: /actions/default/in/GrabGrip
-    needsReinit: 1
+    needsReinit: 0
   useLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1536
 --- !u!1 &258142179
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +781,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 575086487}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -819,7 +819,7 @@ GameObject:
   - component: {fileID: 599029709}
   - component: {fileID: 599029711}
   - component: {fileID: 599029710}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1081,7 +1081,7 @@ GameObject:
   - component: {fileID: 690093121}
   - component: {fileID: 690093120}
   - component: {fileID: 690093119}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1148,7 +1148,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &690093121
 Canvas:
   m_ObjectHideFlags: 0
@@ -1202,7 +1202,7 @@ GameObject:
   - component: {fileID: 772980022}
   - component: {fileID: 772980021}
   - component: {fileID: 772980020}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Usable Test Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1434,7 +1434,7 @@ GameObject:
   - component: {fileID: 825977553}
   - component: {fileID: 825977552}
   - component: {fileID: 825977551}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1773,12 +1773,12 @@ PrefabInstance:
     - target: {fileID: 329286163443813460, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 576195019018294059, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 781184697120031187, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
@@ -1793,22 +1793,22 @@ PrefabInstance:
     - target: {fileID: 893125430791096356, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 908279704488528564, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1098090428576688495, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2121023667831989050, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3403101810132081134, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
@@ -1838,12 +1838,12 @@ PrefabInstance:
     - target: {fileID: 3879560104513014700, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3911313278238043457, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5000732411225539328, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
@@ -1853,7 +1853,7 @@ PrefabInstance:
     - target: {fileID: 5000732411225539328, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5000732411225539331, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
@@ -1913,17 +1913,22 @@ PrefabInstance:
     - target: {fileID: 5830496918727129423, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7351165340488040333, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8724935375405247965, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9213481181747865307, guid: 78fc8640a45206e43a8da598c68d4bdc,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78fc8640a45206e43a8da598c68d4bdc, type: 3}
@@ -2071,7 +2076,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1289640219}
   - component: {fileID: 1289640220}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2278,7 +2283,7 @@ GameObject:
   - component: {fileID: 1351994634}
   - component: {fileID: 1351994636}
   - component: {fileID: 1351994635}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2353,9 +2358,9 @@ GameObject:
   - component: {fileID: 1384688358}
   - component: {fileID: 1384688360}
   - component: {fileID: 1384688359}
-  - component: {fileID: 1384688361}
   - component: {fileID: 1384688362}
   - component: {fileID: 1384688363}
+  - component: {fileID: 1384688361}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -2567,18 +2572,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useCollisionPoint: {fileID: 1464751947}
-  useCollisionRadius: 0.075
-  pinchAction:
+  useCollisionRadius: 0.1
+  useAction:
     actionPath: /actions/default/in/GrabPinch
-    needsReinit: 1
-  gripAction:
+    needsReinit: 0
+  grabAction:
     actionPath: /actions/default/in/GrabGrip
-    needsReinit: 1
+    needsReinit: 0
   useLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1536
   flatscreenCamera: {fileID: 1384688360}
-  flatscreenRaycastDistance: 10
+  flatscreenRaycastDistance: 5
+  flatscreenRaycastLayerMask:
+    serializedVersion: 2
+    m_Bits: 513
   flatscreenAim: {fileID: 0}
   flatscreenAimDistance: 2
 --- !u!1 &1485146079
@@ -5110,7 +5118,7 @@ GameObject:
   - component: {fileID: 2124722519}
   - component: {fileID: 2124722521}
   - component: {fileID: 2124722520}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
