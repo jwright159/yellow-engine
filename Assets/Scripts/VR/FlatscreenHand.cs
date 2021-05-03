@@ -76,14 +76,14 @@ namespace WrightWay.VR
 		}
 		// TODO: Make our own flatscreen camera controller
 
-		protected override bool GetUse()
+		protected override bool GetUse<T>()
 		{
-			return base.GetUse() || Input.GetMouseButtonDown(0);
+			return base.GetUse<T>() || Input.GetMouseButtonDown(0);
 		}
 
-		protected override bool GetUnuse()
+		protected override bool GetUnuse<T>()
 		{
-			return base.GetUnuse() || Input.GetMouseButtonUp(0);
+			return base.GetUnuse<T>() || Input.GetMouseButtonUp(0);
 		}
 	}
 }

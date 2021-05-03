@@ -5,7 +5,7 @@ namespace WrightWay.VR
 	/// <summary>
 	/// Something that can be used.
 	/// </summary>
-	public class Usable : MonoBehaviour
+	public class Usable : MonoBehaviour, IUsable
 	{
 		/// <summary>
 		/// Event for starting using the object.
@@ -41,7 +41,5 @@ namespace WrightWay.VR
 		{
 			OnUnused.Invoke();
 		}
-
-		// TODO: Attach stuff to hand
 	}
 }

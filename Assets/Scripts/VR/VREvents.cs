@@ -5,4 +5,7 @@ namespace WrightWay.VR
 {
 	[Serializable]
 	public class UsableUseEvent : UnityEvent { }
+
+	[Serializable]
+	public class GrabbableGrabEvent : UnityEvent { }
 }

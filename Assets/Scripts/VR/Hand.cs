@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using Valve.VR;
 
 namespace WrightWay.VR
@@ -19,13 +21,14 @@ namespace WrightWay.VR
 		public float useCollisionRadius;
 
 		/// <summary>
-		/// Typically the "use" action.
+		/// Action for using things. Default GrabPinch.
 		/// </summary>
-		public SteamVR_Action_Boolean pinchAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabPinch");
+		public SteamVR_Action_Boolean useAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabPinch");
 		/// <summary>
-		/// Typically the "grab" action.
+		/// Action for grabbing things. Default GrabGrip.
 		/// </summary>
-		public SteamVR_Action_Boolean gripAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabGrip");
+		public SteamVR_Action_Boolean grabAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabGrip");
+		// Perhaps move these somewhere else? I don't like hardcoding in these values, at least in Hand.
 
 		/// <summary>
 		/// The mask from which to find usable <see cref="Usable"/>s.
@@ -47,10 +50,10 @@ namespace WrightWay.VR
 		private Collider[] overlappingColliders = new Collider[MaxOverlappingColliders];
 
 		/// <summary>
-		/// The <see cref="Usable"/> currently being used.
+		/// The <see cref="Usable"/>s currently being used. <Type, IUsable>
 		/// </summary>
-		// Perhaps make this a list if need be later
-		private Usable usingUsable;
+		// Perhaps make this a dict of lists if need be later
+		private Hashtable usingUsables = new Hashtable();
 
 		protected virtual void Awake()
 		{
@@ -68,56 +71,37 @@ namespace WrightWay.VR
 
 		protected virtual void Update()
 		{
-			UpdateUseState();
-			UpdateGrabState();
+			UpdateUseState<Usable>();
+			//UpdateUseState<Grabbable>();
 		}
 
 		/// <summary>
 		/// Fire use and unuse events to the nearest usable.
 		/// </summary>
-		private void UpdateUseState()
+		private void UpdateUseState<T>() where T : MonoBehaviour, IUsable
 		{
-			bool used = GetUse();
-			bool unused = GetUnuse();
+			T usingUsable = (T)usingUsables[typeof(T)];
+
+			bool used = GetUse<T>();
+			bool unused = GetUnuse<T>();
 
 			if (usingUsable == null && used)
 			{
-				Usable usable = GetClosestComponent<Usable>();
+				T usable = GetClosestComponent<T>();
 				if (usable)
 				{
-					usingUsable = usable;
-					usingUsable.Use();
+					usingUsables.Add(typeof(T), usable);
+					usable.Use();
 				}
 			}
 
 			if (usingUsable != null && (unused || Vector3.Distance(transform.position, usingUsable.transform.position) > useCollisionRadius))
 			{
 				usingUsable.Unuse();
-				usingUsable = null;
+				usingUsables.Remove(typeof(T));
 			}
 
 			// Now what kind of wacky interaction would happen if both of these fired at the same time? Hmm...
-		}
-
-		/// <summary>
-		/// Fire grab and ungrab events to the nearest grabbable.
-		/// </summary>
-		private void UpdateGrabState()
-		{
-			bool grabbed = GetGrab();
-			bool ungrabbed = GetGrab();
-
-			if (grabbed || ungrabbed)
-			{
-				/*Grabbable grabbable = GetClosestComponent<Grabbable>();
-				if (grabbable)
-				{
-					if (grabbed)
-						grabbable.Grab();
-					if (ungrabbed)
-						grabbable.Ungrab();
-				}*/
-			}
 		}
 
 		/// <summary>
@@ -164,24 +148,24 @@ namespace WrightWay.VR
 			return closestComponent;
 		}
 
-		protected virtual bool GetUse()
+		protected virtual bool GetUse<T>() where T : IUsable
 		{
-			return pinchAction.GetStateDown(behaviourPose.inputSource);
+			return GetAction<T>().GetStateDown(behaviourPose.inputSource);
 		}
 
-		protected virtual bool GetUnuse()
+		protected virtual bool GetUnuse<T>() where T : IUsable
 		{
-			return pinchAction.GetStateUp(behaviourPose.inputSource);
+			return GetAction<T>().GetStateUp(behaviourPose.inputSource);
 		}
 
-		protected virtual bool GetGrab()
+		protected SteamVR_Action_Boolean GetAction<T>() where T : IUsable
 		{
-			return gripAction.GetStateDown(behaviourPose.inputSource);
-		}
-
-		protected virtual bool GetUngrab()
-		{
-			return gripAction.GetStateUp(behaviourPose.inputSource);
+			if (typeof(T).IsAssignableFrom(typeof(Usable)))
+				return useAction;
+			else if (typeof(T).IsAssignableFrom(typeof(Grabbable)))
+				return grabAction;
+			else
+				return null;
 		}
 	}
 }
