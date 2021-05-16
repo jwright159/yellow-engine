@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace WrightWay.VR
 		public Camera flatscreenCamera;
 
 		/// <summary>
-		/// The maximum distance to raycast at in non-VR.
+		/// The default maximum distance to raycast at in non-VR.
 		/// </summary>
 		public float flatscreenRaycastDistance;
 
@@ -33,14 +34,32 @@ namespace WrightWay.VR
 		/// <summary>
 		/// The last distance that a raycast was hit at.
 		/// </summary>
-		private float flatscreenLastHitDistance;
+		private float lastHitDistance;
+
+		/// <summary>
+		/// The maximum raycast distance depending on whether this is holding a <see cref="Grabbable"/>.
+		/// </summary>
+		public float currentRaycastDistance
+		{
+			get => _currentRaycastDistance;
+			set
+			{
+				_currentRaycastDistance = value;
+
+				if (lastHitDistance > currentRaycastDistance)
+					lastHitDistance = currentRaycastDistance;
+			}
+		}
+		private float _currentRaycastDistance;
 
 		protected override void Start()
 		{
 			base.Start();
 
+			currentRaycastDistance = flatscreenRaycastDistance;
+
 			// Start this with a value so we don't have the hand in our flatscreen face
-			flatscreenLastHitDistance = flatscreenRaycastDistance;
+			lastHitDistance = flatscreenRaycastDistance;
 		}
 
 		protected override void Update()
@@ -58,17 +77,17 @@ namespace WrightWay.VR
 			Ray ray = flatscreenCamera.ScreenPointToRay(Input.mousePosition);
 
 			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit, flatscreenRaycastDistance, flatscreenRaycastLayerMask))
+			if (Physics.Raycast(ray, out hit, currentRaycastDistance, flatscreenRaycastLayerMask))
 			{
 				// Put the hand on the hit point so we might interact with it
 				transform.position = hit.point;
 
-				flatscreenLastHitDistance = hit.distance;
+				lastHitDistance = hit.distance;
 			}
 			else
 			{
 				// Didn't hit anything, but move the hand around in the empty air
-				transform.position = ray.origin + ray.direction * flatscreenLastHitDistance;
+				transform.position = ray.origin + ray.direction * lastHitDistance;
 			}
 			transform.rotation = Quaternion.LookRotation(transform.position - flatscreenCamera.transform.position, Vector3.up);
 

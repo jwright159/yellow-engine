@@ -1805,6 +1805,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1164370946597492031, guid: 78fc8640a45206e43a8da598c68d4bdc,
+        type: 3}
+      propertyPath: flatscreenRaycastDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2121023667831989050, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}
       propertyPath: m_Layer
@@ -1849,11 +1854,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CAD
-      objectReference: {fileID: 0}
-    - target: {fileID: 5000732411225539328, guid: 78fc8640a45206e43a8da598c68d4bdc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5000732411225539331, guid: 78fc8640a45206e43a8da598c68d4bdc,
         type: 3}

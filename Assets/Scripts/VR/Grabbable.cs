@@ -10,6 +10,11 @@ namespace WrightWay.VR
 	public class Grabbable : MonoBehaviour, IUsable
 	{
 		/// <summary>
+		/// The maximum raycast distance when in non-VR and this is grabbed.
+		/// </summary>
+		public float flatscreenRaycastDistance = -1;
+
+		/// <summary>
 		/// Event fired after grabbing the object.
 		/// </summary>
 		public GrabbableGrabEvent OnGrabbed;
@@ -21,8 +26,7 @@ namespace WrightWay.VR
 		/// <summary>
 		/// Whether the object is currently being held.
 		/// </summary>
-		[NonSerialized]
-		public bool isGrabbed;
+		public bool isGrabbed { get; private set; }
 
 		/// <summary>
 		/// Whether we've initialized the grab layers below yet.
@@ -62,7 +66,7 @@ namespace WrightWay.VR
 			if (!isGrabbed)
 				Grab(hand);
 			else
-				Release();
+				Release(hand);
 		}
 
 		public void Unuse(Hand hand)
@@ -82,16 +86,22 @@ namespace WrightWay.VR
 				Debug.LogWarning($"Grabbable {this} is not on the layer {LayerMask.LayerToName(grabbableLayer)}, will be after releasing", this);
 			SetChildrenLayer(grabbedLayer);
 
+			if (hand is FlatscreenHand flatscreenHand)
+				SetFlatscreenHandRaycastDistance(flatscreenHand, flatscreenRaycastDistance);
+
 			OnGrabbed.Invoke();
 		}
 
-		private void Release()
+		private void Release(Hand hand)
 		{
 			isGrabbed = false;
 
 			transform.parent = null;
 
 			SetChildrenLayer(grabbableLayer);
+
+			if (hand is FlatscreenHand flatscreenHand)
+				SetFlatscreenHandRaycastDistance(flatscreenHand, flatscreenHand.flatscreenRaycastDistance);
 
 			OnReleased.Invoke();
 		}
@@ -100,6 +110,13 @@ namespace WrightWay.VR
 		{
 			foreach (Transform transform in GetComponentsInChildren<Transform>())
 				transform.gameObject.layer = layer;
+		}
+
+		private void SetFlatscreenHandRaycastDistance(FlatscreenHand hand, float raycastDistance)
+		{
+			if (flatscreenRaycastDistance < 0) return;
+
+			hand.currentRaycastDistance = raycastDistance;
 		}
 	}
 }

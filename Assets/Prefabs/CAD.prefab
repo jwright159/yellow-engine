@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 3494923008667119279}
   - component: {fileID: 1164370946597492031}
   - component: {fileID: -8024412014802253363}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CAD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -618,7 +618,7 @@ MonoBehaviour:
   OnGrabbed:
     m_PersistentCalls:
       m_Calls: []
-  OnUngrabbed:
+  OnReleased:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &-8024412014802253363
