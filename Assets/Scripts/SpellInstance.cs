@@ -61,11 +61,11 @@ namespace WrightWay.YellowVR
 		/// <summary>
 		/// The amount of stored mana.
 		/// </summary>
-		public float mana { get; protected set; }
+		public float mana { get; private set; }
 		/// <summary>
 		/// The current state of the <see cref="SpellInstance"/>.
 		/// </summary>
-		public SpellState state { get; protected set; }
+		public SpellState state { get; private set; }
 		/// <summary>
 		/// Charging: Attached to a caster and recieving mana.
 		/// Active: Out in the world.
@@ -95,7 +95,7 @@ namespace WrightWay.YellowVR
 		private void Update()
 		{
 			if (lifetime >= timeout)
-				state = SpellState.Dead;
+				Kill();
 
 			switch (state)
 			{
@@ -132,13 +132,18 @@ namespace WrightWay.YellowVR
 		private void OnCollisionEnter(Collision collision)
 		{
 			Debug.Log($"Colliding {this} with {collision.collider}", this);
-			if (state == SpellState.Charging)
+
+			if (state == SpellState.Dead) return;
+
+			SpellInstance collisionInstance = collision.gameObject.GetComponent<SpellInstance>();
+			if (collisionInstance && collisionInstance.state == SpellState.Dead) return;
+
+			if (state == SpellState.Charging || state == SpellState.Inactive)
 			{
 				Debug.Log("Firing from collision", this);
 				caster.Fire();
 			}
 
-			SpellInstance collisionInstance = collision.gameObject.GetComponent<SpellInstance>();
 			if (collisionInstance)
 			{
 				OnCollideWithSpell.Invoke(this, collisionInstance);
@@ -186,6 +191,14 @@ namespace WrightWay.YellowVR
 				transform.SetParent(null);
 				spell.Fire(this);
 			}
+		}
+
+		/// <summary>
+		/// Prepares this instance to be destroyed on next <see cref="Update"/>.
+		/// </summary>
+		public void Kill()
+		{
+			state = SpellState.Dead;
 		}
 
 		/// <summary>

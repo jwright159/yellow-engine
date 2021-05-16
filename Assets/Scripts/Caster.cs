@@ -140,6 +140,15 @@ namespace WrightWay.YellowVR
 		}
 
 		/// <summary>
+		/// Whether the given <see cref="SpellInstance"/> is currently attached to this <see cref="Caster"/>.
+		/// </summary>
+		// This is here because of security and I don't want to make this.spellInstance public
+		public bool IsAttached(SpellInstance instance)
+		{
+			return spellInstance == instance;
+		}
+
+		/// <summary>
 		/// Unbind and cast the <see cref="sigil"/>.
 		/// </summary>
 		public void Fire()

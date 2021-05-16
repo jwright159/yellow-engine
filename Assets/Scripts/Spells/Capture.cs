@@ -32,6 +32,7 @@ namespace WrightWay.YellowVR.Spells
 				// This just physically connects spells to the caster. See Link.cs for linking spells to the caster.
 
 				collisionInstance.spell.chargeRate = holdRate;
+
 				senderInstance.caster.Attach(collisionInstance);
 			}
 		}

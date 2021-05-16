@@ -13,7 +13,7 @@ namespace WrightWay.YellowVR.Targets
 
 		public override void Fire(SpellInstance instance)
 		{
-			Destroy(instance.gameObject);
+			instance.Kill();
 		}
 
 		public override void UpdateInstance(SpellInstance instance)
